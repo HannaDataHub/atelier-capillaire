@@ -246,20 +246,21 @@
     .category-nav-wrapper {
       background-color: #FFFFFF;
       border-top: 1px solid var(--bg-champagne);
-      touch-action: pan-y;
-      overflow-x: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
     }
 
     .category-nav {
-      max-width: 1280px;
+      width: max-content;
+      min-width: 100%;
       margin: 0 auto;
       padding: 8px 24px 10px;
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      touch-action: pan-y;
       user-select: none;
       -webkit-user-select: none;
     }
@@ -268,8 +269,10 @@
       position: relative;
       display: inline-flex;
       align-items: center;
+      flex-shrink: 0;
       gap: 6px;
       padding: 7px 13px;
+      white-space: nowrap;
       border-radius: var(--radius-pill);
       border: 1px solid transparent;
       background: transparent;
@@ -1015,7 +1018,7 @@
         font-size: 12px;
       }
 
-      /* Completely stationary wrapped shelf pills on phone */
+      /* Keep the shelf pills on one horizontally scrollable row on phone */
       .category-nav {
         padding: 7px 10px 9px;
         gap: 5px;
