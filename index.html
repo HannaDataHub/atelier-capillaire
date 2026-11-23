@@ -44,11 +44,14 @@
   </script>
 
   <style>
-    body {
+    html, body {
       background-color: #FAF7F4;
       color: #1E1917;
       font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+      overscroll-behavior-y: none;
     }
 
     /* Elegant custom scrollbar */
@@ -67,13 +70,13 @@
       background: #A86B5D;
     }
 
-    /* Hide scrollbar on horizontal category tabs */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    /* Fixed, non-dragging mobile category bar */
+    .category-bar-locked {
+      overflow-x: hidden;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+      max-width: 100%;
     }
 
     /* Editorial card micro-interactions */
@@ -88,25 +91,27 @@
       box-shadow: 0 18px 38px -10px rgba(30, 25, 23, 0.09);
     }
 
-    /* Category underline animation */
-    .nav-tab {
-      position: relative;
-    }
-    .nav-tab::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 2px;
-      background-color: #A86B5D;
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 0.25s ease;
-    }
-    .nav-tab.active::after,
-    .nav-tab:hover::after {
-      transform: scaleX(1);
+    /* Category underline animation (desktop) */
+    @media (min-width: 768px) {
+      .nav-tab {
+        position: relative;
+      }
+      .nav-tab::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 2px;
+        background-color: #A86B5D;
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.25s ease;
+      }
+      .nav-tab.active::after,
+      .nav-tab:hover::after {
+        transform: scaleX(1);
+      }
     }
 
     /* Drawer transition */
@@ -131,22 +136,20 @@
 <body class="antialiased selection:bg-terracotta/20 selection:text-espresso flex flex-col min-h-screen">
 
   <!-- ===================================================================== -->
-  <!-- 1. TOP ANNOUNCEMENT / EDITORIAL RIBBON                                -->
+  <!-- 1 & 2. UNIFIED FLUSH STICKY TOP BAR (RIBBON + HEADER + SHELVES)       -->
   <!-- ===================================================================== -->
-  <div class="bg-champagne border-b border-taupe/80 text-espresso">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-center text-center">
-      <p class="text-[11px] sm:text-xs font-medium tracking-[0.2em] uppercase text-warmgray">
-        Curated for the Girls <span class="mx-2 text-gold">•</span> French Retail &amp; Sephora Pricing (€)
-      </p>
+  <header class="sticky top-0 left-0 right-0 w-full z-50 bg-silk border-b border-taupe shadow-soft" style="padding-top: env(safe-area-inset-top);">
+    <!-- Top Editorial Ribbon Flush at Very Top -->
+    <div class="bg-champagne border-b border-taupe/80 text-espresso">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-center text-center">
+        <p class="text-[10px] sm:text-xs font-medium tracking-[0.2em] uppercase text-warmgray">
+          Curated for the Girls <span class="mx-2 text-gold">•</span> French Retail &amp; Sephora Pricing (€)
+        </p>
+      </div>
     </div>
-  </div>
 
-  <!-- ===================================================================== -->
-  <!-- 2. STICKY LUXURY HEADER & CATEGORY NAVIGATION                         -->
-  <!-- ===================================================================== -->
-  <header class="sticky top-0 z-30 bg-silk/95 backdrop-blur-md border-b border-taupe">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3.5 sm:pt-4 pb-3 md:pb-0 bg-silk">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3.5 pb-3.5 md:pb-4">
         <!-- Brand Wordmark -->
         <a href="#top" id="brandResetLink" class="group inline-flex flex-col">
           <span class="font-serif text-2xl sm:text-3xl font-semibold tracking-tight text-espresso leading-none">
@@ -215,9 +218,9 @@
         </div>
       </div>
 
-      <!-- Category Navigation Bar with Smooth Underline Indicator -->
-      <nav aria-label="Product Categories" class="flex items-center gap-5 sm:gap-7 overflow-x-auto no-scrollbar">
-        <div id="categoryTabs" class="flex items-center gap-5 sm:gap-7"></div>
+      <!-- Fixed, Touch-Locked Category Navigation (Wraps cleanly on mobile; zero sideways drag) -->
+      <nav aria-label="Product Categories" class="category-bar-locked w-full">
+        <div id="categoryTabs" class="flex flex-wrap justify-center md:justify-start items-center gap-1.5 md:gap-6 lg:gap-7"></div>
       </nav>
     </div>
   </header>
@@ -267,12 +270,12 @@
   <!-- ===================================================================== -->
   <!-- 4. FILTER & SORT TOOLBAR                                              -->
   <!-- ===================================================================== -->
-  <section class="bg-alabaster/95 border-b border-taupe/70">
+  <section class="bg-alabaster/95 border-b border-taupe/70 category-bar-locked">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-3.5">
       <!-- Row 1: Sub-category Ritual Pills (shown when applicable) + Sort Dropdown -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
         <!-- Dynamic Sub-category Tabs -->
-        <div id="subCategoryContainer" class="flex flex-wrap items-center gap-2">
+        <div id="subCategoryContainer" class="flex flex-wrap items-center gap-2 touch-pan-y">
           <!-- Injected via JS -->
         </div>
 
@@ -2691,18 +2694,19 @@
         const count = getCategoryCount(cat.id);
         return `
           <button
+            type="button"
             data-category="${escapeHTML(cat.id)}"
-            class="nav-tab shrink-0 pb-3.5 pt-1 text-xs sm:text-sm font-medium transition-colors inline-flex items-center gap-1.5 ${
+            class="nav-tab px-2.5 py-1.5 md:px-0 md:pb-3.5 md:pt-1 rounded-full md:rounded-none border md:border-0 text-[11px] sm:text-xs md:text-sm font-medium transition-colors inline-flex items-center gap-1.5 ${
               isActive
-                ? 'active text-espresso font-semibold'
-                : 'text-warmgray hover:text-espresso'
+                ? 'active bg-espresso text-silk border-espresso md:bg-transparent md:text-espresso font-semibold'
+                : 'bg-alabaster text-warmgray border-taupe hover:border-terracotta/50 md:bg-transparent hover:text-espresso'
             }"
           >
             <span>${escapeHTML(cat.label)}</span>
-            <span class="text-[11px] px-1.5 py-0.5 rounded-full ${
+            <span class="text-[10px] md:text-[11px] px-1.5 py-0.5 rounded-full ${
               isActive
-                ? 'bg-terracotta/15 text-terracotta font-semibold'
-                : 'bg-champagne/80 text-warmgray'
+                ? 'bg-silk/20 text-silk md:bg-terracotta/15 md:text-terracotta font-semibold'
+                : 'bg-champagne/90 text-warmgray'
             }">
               ${count}
             </span>
