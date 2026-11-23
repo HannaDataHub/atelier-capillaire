@@ -1,0 +1,3246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'Atelier Capillaire — Curated Hair Library</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Cormorant Garamond (High-Fashion Serif) & Plus Jakarta Sans (Clean Luxury UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            alabaster: '#FAF7F4',
+            silk: '#FFFFFF',
+            champagne: '#F3ECE6',
+            blush: '#EAE0D7',
+            taupe: '#E5DCD4',
+            espresso: '#1E1917',
+            warmgray: '#6E635D',
+            terracotta: '#A86B5D',
+            terracottaDark: '#8F5649',
+            gold: '#C49A6C',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            soft: '0 4px 20px -2px rgba(30, 25, 23, 0.04)',
+            lift: '0 16px 36px -8px rgba(168, 107, 93, 0.14)',
+            drawer: '-12px 0 40px -10px rgba(30, 25, 23, 0.16)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF7F4;
+      color: #1E1917;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Elegant custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF7F4;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D8CCC2;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #A86B5D;
+    }
+
+    /* Hide scrollbar on horizontal category tabs */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Editorial card micro-interactions */
+    .beauty-card {
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.28s ease;
+    }
+    .beauty-card:hover {
+      transform: translateY(-3px);
+      border-color: #D5C4B6;
+      box-shadow: 0 18px 38px -10px rgba(30, 25, 23, 0.09);
+    }
+
+    /* Category underline animation */
+    .nav-tab {
+      position: relative;
+    }
+    .nav-tab::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background-color: #A86B5D;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.25s ease;
+    }
+    .nav-tab.active::after,
+    .nav-tab:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Drawer transition */
+    #detailDrawerBackdrop {
+      transition: opacity 0.28s ease;
+    }
+    #detailDrawerPanel {
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Studio bottle float animation on hover */
+    .studio-vessel {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+      filter: drop-shadow(0 12px 16px rgba(30, 25, 23, 0.11));
+    }
+    .beauty-card:hover .studio-vessel {
+      transform: translateY(-4px) scale(1.03);
+      filter: drop-shadow(0 18px 24px rgba(168, 107, 93, 0.18));
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-terracotta/20 selection:text-espresso flex flex-col min-h-screen">
+
+  <!-- ===================================================================== -->
+  <!-- 1. TOP ANNOUNCEMENT / EDITORIAL RIBBON                                -->
+  <!-- ===================================================================== -->
+  <div class="bg-champagne border-b border-taupe/80 text-espresso">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-center text-center">
+      <p class="text-[11px] sm:text-xs font-medium tracking-[0.2em] uppercase text-warmgray">
+        Curated for the Girls <span class="mx-2 text-gold">•</span> French Retail &amp; Sephora Pricing (€)
+      </p>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 2. STICKY LUXURY HEADER & CATEGORY NAVIGATION                         -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-30 bg-silk/95 backdrop-blur-md border-b border-taupe">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4">
+        <!-- Brand Wordmark -->
+        <a href="#top" id="brandResetLink" class="group inline-flex flex-col">
+          <span class="font-serif text-2xl sm:text-3xl font-semibold tracking-tight text-espresso leading-none">
+            L’Atelier Capillaire
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] text-terracotta font-medium mt-1.5">
+            <span>Curated hair library by Anechka</span>
+            <!-- Crisp Black Pixelated Cat Icon -->
+            <svg width="16" height="16" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-label="Pixelated black cat" class="inline-block shrink-0 -mt-0.5 transition-transform duration-300 group-hover:scale-110">
+              <!-- Ears -->
+              <rect x="3" y="2" width="1" height="2" fill="#1E1917"/>
+              <rect x="4" y="3" width="1" height="1" fill="#1E1917"/>
+              <rect x="11" y="3" width="1" height="1" fill="#1E1917"/>
+              <rect x="12" y="2" width="1" height="2" fill="#1E1917"/>
+              <!-- Head -->
+              <rect x="3" y="4" width="10" height="5" fill="#1E1917"/>
+              <rect x="4" y="9" width="8" height="1" fill="#1E1917"/>
+              <!-- Eyes & Nose -->
+              <rect x="5" y="6" width="2" height="1" fill="#C49A6C"/>
+              <rect x="9" y="6" width="2" height="1" fill="#C49A6C"/>
+              <rect x="7" y="8" width="2" height="1" fill="#A86B5D"/>
+              <!-- Whiskers -->
+              <rect x="1" y="7" width="2" height="1" fill="#1E1917"/>
+              <rect x="13" y="7" width="2" height="1" fill="#1E1917"/>
+              <!-- Body & Tail -->
+              <rect x="5" y="10" width="6" height="4" fill="#1E1917"/>
+              <rect x="11" y="12" width="2" height="1" fill="#1E1917"/>
+              <rect x="13" y="10" width="1" height="2" fill="#1E1917"/>
+            </svg>
+          </span>
+        </a>
+
+        <!-- Global Search & Wishlist Button -->
+        <div class="flex items-center gap-2.5 w-full md:w-auto">
+          <div class="relative flex-1 sm:w-72 lg:w-80">
+            <svg class="w-4 h-4 text-warmgray absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path stroke-linecap="round" d="M20 20l-3.5-3.5"></path>
+            </svg>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Search brand, active, hair goal..."
+              class="w-full bg-alabaster border border-taupe focus:border-terracotta focus:bg-silk focus:outline-none rounded-full pl-10 pr-8 py-2 text-sm text-espresso placeholder-warmgray/70 transition-all"
+            />
+            <button
+              id="clearSearchBtn"
+              aria-label="Clear search"
+              class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-warmgray hover:text-espresso text-xs font-medium"
+            >✕</button>
+          </div>
+
+          <!-- Personal Wishlist Toggle Button -->
+          <button
+            id="wishlistToggleBtn"
+            class="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-taupe bg-alabaster hover:border-terracotta/60 text-xs sm:text-sm font-medium text-espresso transition-all"
+          >
+            <svg id="wishlistHeaderHeart" class="w-4 h-4 text-terracotta transition-transform" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+            </svg>
+            <span class="hidden sm:inline">My Wishlist</span>
+            <span id="wishlistCountBadge" class="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-champagne text-espresso text-xs font-semibold">
+              0
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Navigation Bar with Smooth Underline Indicator -->
+      <nav aria-label="Product Categories" class="flex items-center gap-5 sm:gap-7 overflow-x-auto no-scrollbar">
+        <div id="categoryTabs" class="flex items-center gap-5 sm:gap-7"></div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- 3. TASTEFUL EDITORIAL HERO BANNER                                     -->
+  <!-- ===================================================================== -->
+  <section class="border-b border-taupe/70 bg-gradient-to-br from-silk via-alabaster to-champagne/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-9">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div class="max-w-2xl">
+          <!-- Featured Editor's Ritual Note Pill -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-silk/90 backdrop-blur-sm border border-taupe shadow-soft mb-3.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
+            <span class="text-[11px] font-semibold uppercase tracking-[0.16em] text-terracotta">
+              Editor’s Ritual Note
+            </span>
+            <span class="text-xs text-warmgray hidden sm:inline">
+              — Pair pre-wash bond builders with lipid masks for glass-hair shine
+            </span>
+          </div>
+
+          <h1 class="font-serif text-3xl sm:text-4xl lg:text-[42px] font-semibold text-espresso tracking-tight leading-[1.12]">
+            Our Private Beauty Edit
+          </h1>
+          <p class="text-sm sm:text-base text-warmgray mt-2 leading-relaxed">
+            Science-backed formulations vetted for shine, bond repair &amp; scalp health — curated exclusively from authorized French &amp; Sephora retailers.
+          </p>
+        </div>
+
+        <!-- Quick Stats Glass Card -->
+        <div class="shrink-0 bg-silk/80 backdrop-blur-md border border-taupe rounded-2xl px-5 py-4 shadow-soft flex items-center gap-5 self-start lg:self-center">
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.16em] text-warmgray font-medium">Archive</p>
+            <p id="heroTotalCount" class="font-serif text-2xl font-semibold text-espresso mt-0.5">132 Formulations</p>
+          </div>
+          <div class="h-8 w-px bg-taupe"></div>
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.16em] text-warmgray font-medium">Market</p>
+            <p class="font-serif text-2xl font-semibold text-terracotta mt-0.5">France Retail €</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 4. FILTER & SORT TOOLBAR                                              -->
+  <!-- ===================================================================== -->
+  <section class="bg-alabaster/95 border-b border-taupe/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-3.5">
+      <!-- Row 1: Sub-category Ritual Pills (shown when applicable) + Sort Dropdown -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <!-- Dynamic Sub-category Tabs -->
+        <div id="subCategoryContainer" class="flex flex-wrap items-center gap-2">
+          <!-- Injected via JS -->
+        </div>
+
+        <!-- Sort & Price Range Controls -->
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+          <!-- Price Range Filter Pills -->
+          <div id="priceFilterPills" class="flex flex-wrap items-center gap-1.5" role="group" aria-label="Filter by price range">
+            <button data-pricerange="all" class="price-pill px-3 py-1.5 rounded-full text-xs font-medium border transition-all bg-espresso text-silk border-espresso">
+              All Prices
+            </button>
+            <button data-pricerange="under30" class="price-pill px-3 py-1.5 rounded-full text-xs font-medium border transition-all bg-silk text-warmgray border-taupe hover:border-terracotta/60 hover:text-espresso">
+              Under €30
+            </button>
+            <button data-pricerange="30to50" class="price-pill px-3 py-1.5 rounded-full text-xs font-medium border transition-all bg-silk text-warmgray border-taupe hover:border-terracotta/60 hover:text-espresso">
+              €30 – €50
+            </button>
+            <button data-pricerange="over50" class="price-pill px-3 py-1.5 rounded-full text-xs font-medium border transition-all bg-silk text-warmgray border-taupe hover:border-terracotta/60 hover:text-espresso">
+              €50+ Luxury
+            </button>
+          </div>
+
+          <!-- Sort Selector -->
+          <div class="relative">
+            <select
+              id="sortSelect"
+              aria-label="Sort products"
+              class="appearance-none bg-silk border border-taupe hover:border-terracotta/60 focus:border-terracotta focus:outline-none rounded-full pl-3.5 pr-8 py-1.5 text-xs font-medium text-espresso cursor-pointer transition-colors"
+            >
+              <option value="default">Sort: Featured Order</option>
+              <option value="price-asc">Price: Low to High (€ ↑)</option>
+              <option value="price-desc">Price: High to Low (€ ↓)</option>
+              <option value="brand-asc">Brand: A – Z</option>
+            </select>
+            <svg class="w-3.5 h-3.5 text-warmgray absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 5. MAIN EDITORIAL PRODUCT GRID                                        -->
+  <!-- ===================================================================== -->
+  <main id="top" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+    <!-- Active Section Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-7 pb-4 border-b border-taupe/70">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <h2 id="activeCategoryTitle" class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">
+            All Formulations
+          </h2>
+          <span id="wishlistViewBadge" class="hidden px-2.5 py-0.5 rounded-full bg-terracotta/15 text-terracotta text-xs font-semibold">
+            Saved Favorites
+          </span>
+        </div>
+        <p id="activeCategorySubtitle" class="text-sm text-warmgray mt-1">
+          Complete luxury archive curated for the French market. Click any card to inspect the full ritual guide.
+        </p>
+      </div>
+
+      <p id="resultsCounter" class="text-xs font-medium uppercase tracking-[0.14em] text-warmgray shrink-0">
+        Showing 132 formulations
+      </p>
+    </div>
+
+    <!-- Product Cards Grid -->
+    <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Cards rendered dynamically -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="hidden my-12 bg-silk border border-taupe rounded-2xl p-10 sm:p-12 text-center max-w-lg mx-auto shadow-soft">
+      <div class="w-12 h-12 rounded-full bg-champagne flex items-center justify-center mx-auto mb-4 text-terracotta">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+        </svg>
+      </div>
+      <h3 id="emptyStateTitle" class="font-serif text-2xl font-semibold text-espresso mb-2">
+        Curated shelf coming soon
+      </h3>
+      <p id="emptyStateMessage" class="text-sm text-warmgray leading-relaxed">
+        We are currently testing formulations for this shelf. Add new discoveries directly to the <code class="text-xs bg-champagne px-1.5 py-0.5 rounded text-espresso">PRODUCTS</code> list in <code class="text-xs bg-champagne px-1.5 py-0.5 rounded text-espresso">index.html</code>.
+      </p>
+      <button
+        id="resetFiltersBtn"
+        class="hidden mt-6 px-5 py-2.5 rounded-full bg-espresso hover:bg-terracotta text-silk text-xs font-medium tracking-wide transition-colors"
+      >
+        Reset Filters &amp; View All
+      </button>
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- 6. PRODUCT DETAIL DRAWER / MODAL                                      -->
+  <!-- ===================================================================== -->
+  <div id="detailDrawer" class="fixed inset-0 z-50 hidden" aria-modal="true" role="dialog">
+    <!-- Soft Backdrop -->
+    <div id="detailDrawerBackdrop" class="fixed inset-0 bg-espresso/35 backdrop-blur-xs opacity-0"></div>
+
+    <!-- Slide-over Editorial Sheet -->
+    <div id="detailDrawerPanel" class="fixed inset-y-0 right-0 w-full max-w-lg bg-silk shadow-drawer border-l border-taupe flex flex-col translate-x-full">
+      <!-- Drawer Top Bar -->
+      <div class="px-6 py-4 border-b border-taupe flex items-center justify-between bg-alabaster/70">
+        <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-terracotta">
+          Formulation Dossier
+        </span>
+        <button
+          id="closeDrawerBtn"
+          aria-label="Close product dossier"
+          class="w-8 h-8 rounded-full bg-silk border border-taupe hover:border-espresso flex items-center justify-center text-espresso transition-colors"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Drawer Scrollable Content -->
+      <div id="drawerContent" class="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6">
+        <!-- Populated dynamically when a card is clicked -->
+      </div>
+
+      <!-- Drawer Bottom Action Footer -->
+      <div id="drawerFooter" class="p-5 sm:p-6 border-t border-taupe bg-alabaster/80 flex items-center justify-between gap-3">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 7. FINISHED LUXURY EDITORIAL FOOTER                                   -->
+  <!-- ===================================================================== -->
+  <footer class="bg-champagne/70 border-t border-taupe mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-taupe">
+        <!-- Editorial Colophon -->
+        <div class="md:col-span-5 space-y-3">
+          <div>
+            <p class="font-serif text-2xl font-semibold text-espresso leading-none">
+              L’Atelier Capillaire
+            </p>
+            <p class="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] text-terracotta font-medium mt-1.5">
+              <span>Curated hair library by Anechka</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true" class="inline-block shrink-0 -mt-0.5">
+                <rect x="3" y="2" width="1" height="2" fill="#1E1917"/>
+                <rect x="4" y="3" width="1" height="1" fill="#1E1917"/>
+                <rect x="11" y="3" width="1" height="1" fill="#1E1917"/>
+                <rect x="12" y="2" width="1" height="2" fill="#1E1917"/>
+                <rect x="3" y="4" width="10" height="5" fill="#1E1917"/>
+                <rect x="4" y="9" width="8" height="1" fill="#1E1917"/>
+                <rect x="5" y="6" width="2" height="1" fill="#C49A6C"/>
+                <rect x="9" y="6" width="2" height="1" fill="#C49A6C"/>
+                <rect x="7" y="8" width="2" height="1" fill="#A86B5D"/>
+                <rect x="1" y="7" width="2" height="1" fill="#1E1917"/>
+                <rect x="13" y="7" width="2" height="1" fill="#1E1917"/>
+                <rect x="5" y="10" width="6" height="4" fill="#1E1917"/>
+                <rect x="11" y="12" width="2" height="1" fill="#1E1917"/>
+                <rect x="13" y="10" width="1" height="2" fill="#1E1917"/>
+              </svg>
+            </p>
+          </div>
+          <p class="text-sm text-warmgray leading-relaxed max-w-md">
+            Curated with love for the girls • Prices referenced from Sephora France &amp; authorized French pharmacies and salons.
+          </p>
+        </div>
+
+        <!-- Quick Shelf Links -->
+        <div class="md:col-span-4 space-y-2.5">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-espresso">
+            Apothecary Shelves
+          </p>
+          <div id="footerShelfLinks" class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm text-warmgray">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Curator Maintenance Note -->
+        <div class="md:col-span-3 space-y-2.5">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-espresso">
+            Edition &amp; Updates
+          </p>
+          <p class="text-xs text-warmgray leading-relaxed">
+            Personal wishlist hearts are saved locally in your browser. Master catalog entries are maintained directly in the <code class="bg-silk px-1.5 py-0.5 rounded border border-taupe text-espresso">PRODUCTS</code> array in <code class="bg-silk px-1.5 py-0.5 rounded border border-taupe text-espresso">index.html</code>.
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-warmgray">
+        <p>© L’Atelier Capillaire — Private Beauty Compendium</p>
+        <p>France Retail Reference (€) · All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION DATA & INTERACTIVE LOGIC                                  -->
+  <!-- ===================================================================== -->
+  <script>
+    /**
+     * =========================================================================
+     * 1. MASTER PRODUCTS DATABASE (EDITABLE IN VS CODE)
+     * -------------------------------------------------------------------------
+     * To add or edit products in VS Code:
+     * Simply add/modify objects in this `PRODUCTS` array.
+     *
+     * Available Categories:
+     * - "Bond Treatments"  (subCategory: "Before Washing" | "After Shampoo" | "After Washing")
+     * - "Shampoos"         (subCategory: "Clarifying" | "Normal")
+     * - "Conditioners"     (subCategory: null)
+     * - "Masks"            (subCategory: "Protein-Aimed" | "Lipids")
+     * - "Leave-Ins"        (subCategory: null)
+     * - "Oils"             (subCategory: "Before Wash Oil" | "Post-Wash / Renewal Oil")
+     * - "Scalp Treatments" (subCategory: "Exfoliants & Peels" | "Growth & Anti-Hair Loss")
+     * - "Night Creams"     (subCategory: null)
+     * =========================================================================
+     */
+    const PRODUCTS = [
+      // =======================================================================
+      // BOND TREATMENTS — BEFORE WASHING
+      // =======================================================================
+      {
+        id: 1,
+        category: 'Bond Treatments',
+        subCategory: 'Before Washing',
+        brand: 'OLAPLEX',
+        name: 'Nº.0 Intensive Bond Building Treatment',
+        price: 30,
+        retailer: 'Sephora FR',
+        volume: '155 ml',
+        actives: 'Bis-Aminopropyl Diglycol Dimaleate',
+        whyChosen: 'Intensive pre-shampoo primer designed to pair with Nº.3 to rebuild broken disulfide bonds in chemically or heat-damaged hair.'
+      },
+      {
+        id: 2,
+        category: 'Bond Treatments',
+        subCategory: 'Before Washing',
+        brand: 'OLAPLEX',
+        name: 'Nº.3PLUS Complete Repair Treatment',
+        price: 35,
+        retailer: 'Sephora FR',
+        volume: '100 ml',
+        actives: 'Bis-Aminopropyl Diglycol Dimaleate, Amino Acids',
+        whyChosen: 'Pre-shampoo rinse-out bond builder for hair weakened by bleaching, coloring, and heat; strengthens lengths and reduces breakage.'
+      },
+      {
+        id: 3,
+        category: 'Bond Treatments',
+        subCategory: 'Before Washing',
+        brand: 'Redken',
+        name: 'Acidic Bonding Concentrate Intensive Pre-Treatment',
+        price: 34,
+        retailer: 'Sephora FR',
+        volume: '150 ml',
+        actives: 'Citric Acid (14% Bonding Care Complex)',
+        whyChosen: 'Acidic pre-wash treatment that reinforces weakened bonds and balances pH to protect brittle hair against breakage.'
+      },
+      {
+        id: 4,
+        category: 'Bond Treatments',
+        subCategory: 'Before Washing',
+        brand: "L'Oréal Professionnel",
+        name: 'Absolut Repair Molecular Pre-Treatment',
+        price: 38,
+        retailer: 'Sephora FR',
+        volume: '190 ml',
+        actives: '3% Peptides Bonder + 5 Amino Acids',
+        whyChosen: 'Penetrates deep into the fiber before washing to rebuild macromolecular structure in severely damaged lengths.'
+      },
+      {
+        id: 5,
+        category: 'Bond Treatments',
+        subCategory: 'Before Washing',
+        brand: 'epres',
+        name: 'Bond Repair Treatment',
+        price: 48,
+        retailer: 'Authorized FR Retail',
+        volume: 'Starter Kit',
+        actives: 'Biodiffusion™ Acid-Free Liquid Molecule (Diethylhexyl Maleate)',
+        whyChosen: 'Spray pre-wash treatment using water-free Biodiffusion™ technology that continues repairing broken bonds even after hair dries.'
+      },
+      {
+        id: 6,
+        category: 'Bond Treatments',
+        subCategory: 'Before Washing',
+        brand: 'Medavita',
+        name: 'Elisièr Bond Repair',
+        price: 36,
+        retailer: 'Salon FR',
+        volume: '150 ml',
+        actives: 'Biomolecular Bond Complex™, Amino Acids',
+        whyChosen: 'Pre-shampoo bond-rebuilding treatment formulated specifically to restore integrity to bleached and sensitized hair.'
+      },
+
+      // =======================================================================
+      // BOND TREATMENTS — AFTER SHAMPOO
+      // =======================================================================
+      {
+        id: 7,
+        category: 'Bond Treatments',
+        subCategory: 'After Shampoo',
+        brand: 'OUAI',
+        name: 'Bond Repair Balm',
+        price: 56,
+        retailer: 'Sephora FR',
+        volume: '142 ml',
+        actives: 'Bond-Building Complex, Hydrolyzed Rice Protein Peptides, Vegan Silk, Hyaluronic Acid',
+        whyChosen: '3-minute in-shower bond-building mask that reinforces broken links, smooths the cuticle, and reduces breakage by up to 54%.'
+      },
+      {
+        id: 8,
+        category: 'Bond Treatments',
+        subCategory: 'After Shampoo',
+        brand: 'Aveda',
+        name: 'Botanical Repair Intensive Strengthening Masque (Light / Rich)',
+        price: 50,
+        retailer: 'Sephora FR',
+        volume: '150–200 ml',
+        actives: 'Plant-Derived Bond-Building Molecule, Avocado, Green Tea & Sacha Inchi Oils',
+        whyChosen: 'Builds new hydrogen bonds in the cortex; Light version (50 €) suits fine hair while Rich (64 €) delivers deep lipid nourishment.'
+      },
+      {
+        id: 9,
+        category: 'Bond Treatments',
+        subCategory: 'After Shampoo',
+        brand: 'Davines',
+        name: 'Nourishing Hair Building Pak',
+        price: 36,
+        retailer: 'Salon FR',
+        volume: '250 ml',
+        actives: 'Biacidic Bond Complex, Vegetal Keratin, Rice Proteins',
+        whyChosen: 'Restructures and strengthens damaged hair fibers while restoring elasticity and reducing breakage.'
+      },
+      {
+        id: 10,
+        category: 'Bond Treatments',
+        subCategory: 'After Shampoo',
+        brand: 'Bumble and bumble',
+        name: 'Bond-Building Repair Treatment',
+        price: 42,
+        retailer: 'Sephora FR',
+        volume: '125 ml',
+        actives: 'Honey Bond-Building Complex',
+        whyChosen: 'Rinse-out treatment that builds new bonds in the cortex to strengthen and protect heat- or color-damaged strands.'
+      },
+      {
+        id: 11,
+        category: 'Bond Treatments',
+        subCategory: 'After Shampoo',
+        brand: 'Schwarzkopf Professional',
+        name: 'Fibre Clinix BONDFINITY Treatment',
+        price: 35,
+        retailer: 'Salon FR',
+        volume: '100 ml',
+        actives: 'BONDFINITY Technology (Covalent Bond-Creating Complex)',
+        whyChosen: 'Locks in natural keratin and creates permanent covalent bonds to restore resilience in heavily compromised hair.'
+      },
+
+      // =======================================================================
+      // BOND TREATMENTS — AFTER WASHING
+      // =======================================================================
+      {
+        id: 12,
+        category: 'Bond Treatments',
+        subCategory: 'After Washing',
+        brand: 'K18',
+        name: 'Leave-In Molecular Repair Hair Mask',
+        price: 79,
+        retailer: 'Sephora FR',
+        volume: '50 ml',
+        actives: 'Patented K18PEPTIDE™',
+        whyChosen: 'Biomimetic peptide technology that penetrates the innermost cortex to reconnect broken polypeptide chains and disulfide bonds in 4 minutes without rinsing.'
+      },
+      {
+        id: 13,
+        category: 'Bond Treatments',
+        subCategory: 'After Washing',
+        brand: 'Living Proof',
+        name: 'Triple Bond Complex',
+        price: 48,
+        retailer: 'Sephora FR',
+        volume: '45 ml',
+        actives: '3D Fortifying Technology, Encapsulated Cellular Oil, Peptides',
+        whyChosen: 'Weekly leave-in treatment that builds a 3D network targeting all three bond types (hydrogen, ionic, and covalent) for 8x stronger hair.'
+      },
+      {
+        id: 14,
+        category: 'Bond Treatments',
+        subCategory: 'After Washing',
+        brand: 'Kerasilk',
+        name: 'Strengthening Bond Builder',
+        price: 35,
+        retailer: 'Authorized FR Retail',
+        volume: '90 ml',
+        actives: 'Biomimetic Silk, Bondamide',
+        whyChosen: 'Leave-in bond-building serum that penetrates the cortex to reinforce weakened, brittle hair fibers.'
+      },
+      {
+        id: 15,
+        category: 'Bond Treatments',
+        subCategory: 'After Washing',
+        brand: 'Goldwell',
+        name: 'Dualsenses Bond Pro Day & Night Bond Booster',
+        price: 24,
+        retailer: 'Salon FR',
+        volume: '75 ml',
+        actives: 'Inter-Amino-Bond-Builder, Soy Protein',
+        whyChosen: 'Lightweight leave-in booster that reinforces ionic and hydrogen bonds day and night to prevent split ends and breakage.'
+      },
+
+      // =======================================================================
+      // SHAMPOOS — CLARIFYING
+      // =======================================================================
+      {
+        id: 16,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: 'OUAI',
+        name: 'Detox Shampoo',
+        price: 33,
+        retailer: 'Sephora FR',
+        volume: '300 ml',
+        actives: 'Apple Cider Vinegar, Hydrolyzed Keratin, Chelating Agents',
+        whyChosen: 'Deeply clarifies scalp and lengths from product buildup, excess sebum, and hard water deposits without stripping hair.'
+      },
+      {
+        id: 17,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: 'Davines',
+        name: 'SOLU Shampoo',
+        price: 24,
+        retailer: 'Salon FR',
+        volume: '250 ml',
+        actives: 'Buckwheat Extract, Mild Cleansing Surfactants',
+        whyChosen: 'Refreshing clarifying shampoo designed to thoroughly remove styling residue and pollution buildup.'
+      },
+      {
+        id: 18,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: 'ORising',
+        name: 'Purifying Shampoo',
+        price: 26,
+        retailer: 'Trichology FR',
+        volume: '250 ml',
+        actives: 'White Clay (Kaolin), Burdock & Sage Phytoextracts',
+        whyChosen: 'Absorbs excess sebum and purifies oily scalps while rebalancing scalp flora.'
+      },
+      {
+        id: 19,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: 'Moroccanoil',
+        name: 'Scalp Balancing Shampoo',
+        price: 30,
+        retailer: 'Sephora FR',
+        volume: '250 ml',
+        actives: 'Salicylic Acid, Niacinamide, Argan Oil, Japanese Cherry Blossom',
+        whyChosen: 'Gently exfoliates and soothes oily or flaky scalps while keeping lengths hydrated and soft.'
+      },
+      {
+        id: 20,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: 'Kérastase',
+        name: 'Spécifique Bain Divalent',
+        price: 29,
+        retailer: 'Sephora FR',
+        volume: '250 ml',
+        actives: 'Amino Acids, Vitamin B6',
+        whyChosen: 'Balances oily roots by regulating sebum production while nourishing sensitized, dry ends.'
+      },
+      {
+        id: 21,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: "L'Oréal Professionnel",
+        name: 'Scalp Advanced Anti-Oiliness Dermo-Purifier Shampoo',
+        price: 27,
+        retailer: 'Sephora FR',
+        volume: '300 ml',
+        actives: '3% AHA (Water-Soluble Acids), Purifying Surfactants',
+        whyChosen: 'Dermo-purifying formula that removes sweat, sebum, and residue for an instant fresh, lightweight scalp feel.'
+      },
+      {
+        id: 22,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: 'Rated Green',
+        name: 'Real Mary Exfoliating Scalp Shampoo',
+        price: 21,
+        retailer: 'Authorized FR Retail',
+        volume: '400 ml',
+        actives: 'Cold-Pressed Rosemary Juice, Salicylic Acid, Peppermint, Mild Surfactants',
+        whyChosen: 'Uses 5 gentle surfactants alongside BHA and rosemary to cleanse and refresh oily or congested scalps without harsh sulfates.'
+      },
+      {
+        id: 23,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: 'Redken',
+        name: 'Amino Mint Shampoo',
+        price: 25,
+        retailer: 'Sephora FR',
+        volume: '300 ml',
+        actives: 'Salicylic Acid, Glycine (Amino Acid), Peppermint Extract',
+        whyChosen: 'Clarifies oily roots with an invigorating cooling sensation while acidic pH cares for dry lengths.'
+      },
+
+      // =======================================================================
+      // SHAMPOOS — NORMAL
+      // =======================================================================
+      {
+        id: 24,
+        category: 'Shampoos',
+        subCategory: 'Normal',
+        brand: 'Davines',
+        name: 'OI Shampoo',
+        price: 27,
+        retailer: 'Authorized FR Retail',
+        volume: '280 ml',
+        actives: 'Roucou Oil, Panthenol, Gentle Surfactant Blend',
+        whyChosen: 'Sulfate-free daily cleanser that delivers extraordinary softness, shine, and body to all hair types.'
+      },
+      {
+        id: 25,
+        category: 'Shampoos',
+        subCategory: 'Normal',
+        brand: 'Moroccanoil',
+        name: 'Hydrating Shampoo',
+        price: 29,
+        retailer: 'Sephora FR',
+        volume: '250 ml',
+        actives: 'Argan Oil, Sodium PCA, Glycerin, Vitamins A & E',
+        whyChosen: 'Gentle daily hydrating cleanser that restores moisture balance and elasticity to dry or normal hair.'
+      },
+      {
+        id: 26,
+        category: 'Shampoos',
+        subCategory: 'Normal',
+        brand: 'Kérastase',
+        name: 'Première Bain Décalcifiant Réparateur',
+        price: 37,
+        retailer: 'Sephora FR',
+        volume: '250 ml',
+        actives: 'Citric Acid, Glycine, Hydrolyzed Vegetable Protein',
+        whyChosen: 'Sulfate-free decalcifying shampoo that removes hard-water calcium buildup and reconnects broken keratin links.'
+      },
+      {
+        id: 27,
+        category: 'Shampoos',
+        subCategory: 'Normal',
+        brand: 'OLAPLEX',
+        name: 'Nº.4 Bond Maintenance Shampoo',
+        price: 34,
+        retailer: 'Sephora FR',
+        volume: '250 ml',
+        actives: 'Bis-Aminopropyl Diglycol Dimaleate, Panthenol, Mild Surfactants',
+        whyChosen: 'Concentrated daily bond-building shampoo that repairs damage, reduces breakage, and adds shine without stripping.'
+      },
+      {
+        id: 28,
+        category: 'Shampoos',
+        subCategory: 'Normal',
+        brand: 'Amika',
+        name: 'The Kure Bond Repair Shampoo',
+        price: 30,
+        retailer: 'Sephora FR',
+        volume: '275 ml',
+        actives: 'Bond Cure Technology, Sea Buckthorn, Vegan Proteins, Shea Butter',
+        whyChosen: 'Restorative daily shampoo clinically proven to reduce breakage and strengthen dry, damaged strands.'
+      },
+      {
+        id: 29,
+        category: 'Shampoos',
+        subCategory: 'Normal',
+        brand: 'Davines',
+        name: 'Well-Being Shampoo',
+        price: 23,
+        retailer: 'Authorized FR Retail',
+        volume: '250 ml',
+        actives: 'Echinacea Phytoceuticals, Glycerin, Gentle Surfactants',
+        whyChosen: 'Ultra-gentle moisturizing shampoo ideal for frequent washing on normal scalps, leaving hair silky and hydrated.'
+      },
+      {
+        id: 30,
+        category: 'Shampoos',
+        subCategory: 'Normal',
+        brand: 'Keune',
+        name: 'Care Vital Nutrition Shampoo',
+        price: 22,
+        retailer: 'Salon FR',
+        volume: '300 ml',
+        actives: 'Nutri-Injection Technology, Provitamin B5 (Panthenol), Ceramides',
+        whyChosen: 'Balanced daily cleanser that replenishes moisture and reinforces the lipid barrier of dry, dull hair.'
+      },
+
+      // =======================================================================
+      // MASKS — PROTEIN-AIMED
+      // =======================================================================
+      {
+        id: 31,
+        category: 'Masks',
+        subCategory: 'Protein-Aimed',
+        brand: 'Keune',
+        name: 'Care Velvet Smooth Mask',
+        price: 32,
+        retailer: 'Salon FR',
+        volume: '250 ml',
+        actives: 'Biomimetic Lipids, Tulip Extract, Hydrolyzed Proteins',
+        whyChosen: 'Strengthens damaged, unruly hair while sealing the cuticle for frizz-free smoothness and reduced breakage.'
+      },
+      {
+        id: 32,
+        category: 'Masks',
+        subCategory: 'Protein-Aimed',
+        brand: 'Joico',
+        name: 'K-PAK Reconstructor',
+        price: 28,
+        retailer: 'Authorized FR Retail',
+        volume: '150 ml',
+        actives: 'Quadramine Complex (Hydrolyzed Keratin), Amino Acids, Guava Extract',
+        whyChosen: 'Cult-classic intensive protein reconstructor that rebuilds elasticity and strength in severely brittle, damaged hair.'
+      },
+      {
+        id: 33,
+        category: 'Masks',
+        subCategory: 'Protein-Aimed',
+        brand: 'Perricone MD',
+        name: 'Intensive Moisture Repair Mask',
+        price: 45,
+        retailer: 'Authorized FR Retail',
+        volume: '150 ml',
+        actives: '3 Forms of Keratin, Amino Acids, Biomimetic Ceramides',
+        whyChosen: 'Multi-molecular keratin and amino acid treatment that smooths rough cuticles and restores tensile strength.'
+      },
+      {
+        id: 34,
+        category: 'Masks',
+        subCategory: 'Protein-Aimed',
+        brand: 'Kérastase',
+        name: 'Résistance Masque Thérapiste',
+        price: 59,
+        retailer: 'Sephora FR',
+        volume: '200 ml',
+        actives: 'FIBRA-KAP™ (Modified Protein + 6 Amino Acids), Resurrection Sap',
+        whyChosen: 'Heavy-duty reconstructive butter mask engineered for severely over-processed, eroded hair (erosion level 3–4).'
+      },
+      {
+        id: 35,
+        category: 'Masks',
+        subCategory: 'Protein-Aimed',
+        brand: 'Living Proof',
+        name: 'Restore Repair Mask',
+        price: 42,
+        retailer: 'Authorized FR Retail',
+        volume: '200 ml',
+        actives: '11 Amino Acids, Biomimetic Emollient Blend',
+        whyChosen: 'Replenishes lost amino acids and restores protective cuticle layers to dramatically reduce breakage.'
+      },
+      {
+        id: 36,
+        category: 'Masks',
+        subCategory: 'Protein-Aimed',
+        brand: 'Redken',
+        name: 'Extreme Strength Builder Plus Mask',
+        price: 43,
+        retailer: 'Sephora FR',
+        volume: '250 ml',
+        actives: 'Strength Complex (Amino Acids, Arginine, Citric Acid, Soy Protein)',
+        whyChosen: 'Deep-conditioning protein treatment that fortifies weakened areas and prevents future snapping.'
+      },
+
+      // =======================================================================
+      // MASKS — LIPIDS
+      // =======================================================================
+      {
+        id: 37,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Aveda',
+        name: 'Nutriplenish Deep Moisture Masque',
+        price: 64,
+        retailer: 'Sephora FR',
+        volume: '200 ml',
+        actives: 'Organic Pomegranate Oil, Coconut Oil, Mango Butter, Squalane',
+        whyChosen: 'Rich lipid-dense butter mask that deeply replenishes dry, depleted strands for soft, bouncy hydration.'
+      },
+      {
+        id: 38,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Gisou',
+        name: 'Honey Gloss Ceramide Therapy Hair Mask',
+        price: 42,
+        retailer: 'Sephora FR',
+        volume: '230 ml',
+        actives: 'Mirsalehi Honey, Ceramide NP, Squalane, Shea Butter, Sunflower Oil',
+        whyChosen: 'Combines humectant honey with biomimetic ceramides and plant oils to seal moisture and create mirror-like gloss.'
+      },
+      {
+        id: 39,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'OLAPLEX',
+        name: 'Rich Hydration Mask',
+        price: 44,
+        retailer: 'Authorized FR Retail',
+        volume: '200 ml',
+        actives: 'Biomimetic Lipid Complex, Shea Butter, Triglycerides, Bis-Aminopropyl Diglycol Dimaleate',
+        whyChosen: 'Intensive lipid-rich mask that delivers lasting moisture, frizz control, and bond support for medium-to-thick dry hair.'
+      },
+      {
+        id: 40,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Aveda',
+        name: 'Botanical Repair Strengthening Masque (Rich)',
+        price: 64,
+        retailer: 'Sephora FR',
+        volume: '200 ml',
+        actives: 'Avocado, Sacha Inchi & Camellia Oils, Shea & Coconut Butters, Squalane',
+        whyChosen: 'Wraps dry, damaged hair in plant lipids and waxes while reinforcing internal bonds.'
+      },
+      {
+        id: 41,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Vegamour',
+        name: 'HYDR-8 Deep Moisture Repair Hair Mask',
+        price: 52,
+        retailer: 'Authorized FR Retail',
+        volume: '200 ml',
+        actives: 'Karmatin™ (Vegan Keratin), Meadowfoam Seed Oil, Phospholipids, Ceramide NP',
+        whyChosen: "Replenishes hair's natural lipid barrier with phospholipids and ceramides to tame frizz and restore shine."
+      },
+      {
+        id: 42,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Kérastase',
+        name: 'Première Masque Filler Réparateur',
+        price: 63,
+        retailer: 'Sephora FR',
+        volume: '200 ml',
+        actives: 'Peptides, Glycine, Fatty Esters, Triglycerides',
+        whyChosen: 'Anti-breakage lipid-rich filler mask that blocks excess calcium and restores suppleness to porous, damaged lengths.'
+      },
+      {
+        id: 43,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Oribe',
+        name: 'Eternal Curls Deep Treatment Masque',
+        price: 75,
+        retailer: 'Authorized FR Retail',
+        volume: '250 ml',
+        actives: 'Murumuru, Cocoa & Shea Butters, Coconut, Almond & Mango Oils',
+        whyChosen: 'Decadent butter and oil complex tailored for dry curls and coils needing intense lipid nourishment and definition.'
+      },
+      {
+        id: 44,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Living Proof',
+        name: 'Moisture Rescue Mask',
+        price: 42,
+        retailer: 'Sephora FR',
+        volume: '236 ml',
+        actives: 'Fatty Acid Complex, Triolein, Shea, Jojoba Esters, Plant Wax',
+        whyChosen: 'High-slip lipid treatment that restores moisture balance without heavy silicone buildup.'
+      },
+      {
+        id: 45,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Fenty Hair',
+        name: 'The Richer One Moisture Repair Deep Conditioner',
+        price: 36,
+        retailer: 'Sephora FR',
+        volume: '340 ml',
+        actives: 'Replenicore-5, Shea Butter, Wild Mango Butter, Fatty Esters, Coconut Derivatives',
+        whyChosen: 'Ultra-rich creamy lipid treatment that melts into thick or coily hair to soften, detangle, and repair split ends.'
+      },
+      {
+        id: 46,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Moroccanoil',
+        name: 'Restorative Hair Mask',
+        price: 46,
+        retailer: 'Sephora FR',
+        volume: '250 ml',
+        actives: 'Argan Oil, Shea Butter, Canola Oil, Pequi Oil, Vegetable Proteins',
+        whyChosen: '5-to-7 minute revitalizing mask packed with essential fatty acids to restore elasticity to chemically damaged hair.'
+      },
+      {
+        id: 47,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Davines',
+        name: 'NOUNOU Hair Mask',
+        price: 34,
+        retailer: 'Authorized FR Retail',
+        volume: '250 ml',
+        actives: 'Babassu Butter, Olive & Shea Derivatives, Fiaschetto Tomato Extract',
+        whyChosen: 'Deeply nourishing lipid-rich mask formulated for bleached, permed, or relaxed hair that feels brittle.'
+      },
+      {
+        id: 48,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'OUAI',
+        name: 'Thick Hair Treatment Masque',
+        price: 44,
+        retailer: 'Sephora FR',
+        volume: '236 ml',
+        actives: 'Illipe Butter, Shea Butter, Almond, Macadamia & Olive Oils, Hydrolyzed Keratin',
+        whyChosen: 'Heavyweight butter and oil mask designed to tame frizz, restore shine, and soften coarse, thick hair.'
+      },
+      {
+        id: 49,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Briogeo',
+        name: 'Be Gentle, Be Kind Avocado + Kiwi Mega Moisture Superfood Mask',
+        price: 44,
+        retailer: 'Sephora FR',
+        volume: '240 ml',
+        actives: 'Avocado Oil, Cocoa Butter, Chia & Sunflower Seed Oils, Kiwi Extract',
+        whyChosen: 'Nutrient-dense lipid mask loaded with omega fatty acids and vitamins for parched, dull strands.'
+      },
+      {
+        id: 50,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Paul Mitchell',
+        name: '15-In-1 Rebuilding Treatment / Mask',
+        price: 32,
+        retailer: 'Authorized FR Retail',
+        volume: '200 ml',
+        actives: 'Jojoba Oil, Shea Butter, Mirabelle Plum Oil',
+        whyChosen: 'High concentration of plant oils and shea butter delivers multi-benefit lipid softness and manageability.'
+      },
+      {
+        id: 51,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Joico',
+        name: 'K-PAK Intense Hydrator',
+        price: 28,
+        retailer: 'Authorized FR Retail',
+        volume: '250 ml',
+        actives: 'Lanolin, Olive Lipids, Shea Butter, Phospholipids, Glycolipids',
+        whyChosen: 'Replenishes lost lipids in overly dry, porous hair to immediately seal the cuticle and restore bounce.'
+      },
+
+      // =======================================================================
+      // LEAVE-INS
+      // =======================================================================
+      {
+        id: 52,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'Gisou',
+        name: 'Honey Milk 5-in-1 Styling Cream',
+        price: 30,
+        retailer: 'Sephora FR',
+        volume: '150 ml',
+        actives: 'Mirsalehi Honey, Hydrolyzed Milk/Plant Proteins, Ceramides',
+        whyChosen: 'Lightweight leave-in milk that hydrates, smooths the cuticle, tames frizz, and protects against heat up to 230°C.'
+      },
+      {
+        id: 53,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'OLAPLEX',
+        name: 'Nº.5 Leave-In Moisturize & Mend',
+        price: 34,
+        retailer: 'Sephora FR',
+        volume: '100 ml',
+        actives: 'Bis-Aminopropyl Diglycol Dimaleate, Murumuru Butter, Squalane, Sealing Complex',
+        whyChosen: 'Instantly seals split ends, reduces friction, and provides continuous bond repair and heat protection.'
+      },
+      {
+        id: 54,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'Amika',
+        name: 'Hydro Rush Intense Moisture Leave-In Conditioner',
+        price: 34,
+        retailer: 'Sephora FR',
+        volume: '200 ml',
+        actives: 'Hyaluronic Acid, Squalane, Polyglutamic Acid, Bio-Fermented Coconut Water',
+        whyChosen: 'Delivers 72-hour hydration, detangles effortlessly, and eliminates dryness and frizz without weighing hair down.'
+      },
+      {
+        id: 55,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'Living Proof',
+        name: 'Restore Repair Leave-In',
+        price: 30,
+        retailer: 'Authorized FR Retail',
+        volume: '118 ml',
+        actives: 'Biomimetic Emollients, Silk-Like Conditioning Polymers, UV Filters',
+        whyChosen: 'Smooths damaged cuticles, prevents up to 93% of new split ends, and reduces breakage from combing.'
+      },
+      {
+        id: 56,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'Moroccanoil',
+        name: 'All in One Leave-In Conditioner',
+        price: 33.5,
+        retailer: 'Sephora FR',
+        volume: '160 ml',
+        actives: 'Argan Oil, Pure Amino Acids, Sunflower Seed Oil, Quinoa Extract',
+        whyChosen: 'Milky detangling spray that provides 72-hour softness, thermal protection, and anti-breakage nourishment.'
+      },
+      {
+        id: 57,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'Kérastase',
+        name: 'Première Sérum Filler Fondamental',
+        price: 61,
+        retailer: 'Sephora FR',
+        volume: '90 ml',
+        actives: 'Peptides, Glycine, Conditioning Polymers',
+        whyChosen: 'Luxurious leave-in filler serum that repels humidity, prevents brushing breakage, and offers 230°C heat protection.'
+      },
+      {
+        id: 58,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'Aveda',
+        name: 'One For All Leave-In Elixir',
+        price: 37,
+        retailer: 'Sephora FR',
+        volume: '200 ml',
+        actives: 'Moringa & Jojoba Seed Oils, Plant-Derived Humectants',
+        whyChosen: '25-in-1 vegan elixir that detangles, tames frizz, balances porosity, and shields against heat and UV rays.'
+      },
+      {
+        id: 59,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'Kérastase',
+        name: 'Gloss Absolu Anti-Frizz Glaze Milk',
+        price: 52,
+        retailer: 'Sephora FR',
+        volume: '190 ml',
+        actives: 'Glycolic Acid, Hyaluronic Acid, Wild Rose Oil',
+        whyChosen: 'All-in-one smoothing glaze spray that eliminates frizz, eases detangling, and imparts glassy shine to long hair.'
+      },
+      {
+        id: 60,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'OUAI',
+        name: 'Leave In Conditioner',
+        price: 33,
+        retailer: 'Sephora FR',
+        volume: '140 ml',
+        actives: 'Tamarind Seed Extract, Amino Acids, Panthenol, Argan & Baobab Oils',
+        whyChosen: 'Multi-tasking detangling mist that tames flyaways, softens strands, and protects against heat styling.'
+      },
+      {
+        id: 61,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'OLAPLEX',
+        name: 'Nº.9 Bond Protector Nourishing Hair Serum',
+        price: 33,
+        retailer: 'Sephora FR',
+        volume: '90 ml',
+        actives: 'Bis-Aminopropyl Diglycol Dimaleate, Red Algae Extract, Hyaluronic Acid',
+        whyChosen: 'Silicone-free antioxidant serum that shields hair from pollution for 48 hours and heat up to 232°C while boosting satin shine.'
+      },
+      {
+        id: 62,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'Redken',
+        name: 'Acidic Bonding Concentrate Leave-In Treatment',
+        price: 37,
+        retailer: 'Sephora FR',
+        volume: '150 ml',
+        actives: 'Citric Acid, Bonding Care Complex',
+        whyChosen: 'Intensive acidic leave-in lotion that tames frizz, reinforces weakened bonds, and protects color-treated hair up to 230°C.'
+      },
+
+      // =======================================================================
+      // SCALP TREATMENTS — EXFOLIANTS & PEELS
+      // =======================================================================
+      {
+        id: 63,
+        category: 'Scalp Treatments',
+        subCategory: 'Exfoliants & Peels',
+        brand: 'The INKEY List',
+        name: 'Salicylic Acid Exfoliating Scalp Treatment',
+        price: 16,
+        retailer: 'Sephora FR',
+        volume: '150 ml',
+        actives: '2% Salicylic Acid (BHA), Betaine, Panthenol',
+        whyChosen: 'Lightweight pre-wash serum that dissolves excess sebum and dead skin buildup while keeping the scalp hydrated.'
+      },
+      {
+        id: 64,
+        category: 'Scalp Treatments',
+        subCategory: 'Exfoliants & Peels',
+        brand: 'The INKEY List',
+        name: 'Glycolic Acid Exfoliating Scalp Scrub',
+        price: 15,
+        retailer: 'Authorized FR Retail',
+        volume: '150 ml',
+        actives: '7% Glycolic Acid (AHA), 2% Castor Beads',
+        whyChosen: 'Dual chemical-and-physical pre-wash exfoliator that removes product buildup and dead skin for a smoother scalp.'
+      },
+      {
+        id: 65,
+        category: 'Scalp Treatments',
+        subCategory: 'Exfoliants & Peels',
+        brand: 'ORising',
+        name: 'Eliokap Exfoliating Scalp Scrub',
+        price: 45,
+        retailer: 'Trichology FR',
+        volume: '150 ml',
+        actives: 'Erythritol, Apricot Kernel Powder, Olive Oil',
+        whyChosen: 'Gentle mechanical scrub that lifts flakiness and buildup while soothing and softening the scalp barrier.'
+      },
+      {
+        id: 66,
+        category: 'Scalp Treatments',
+        subCategory: 'Exfoliants & Peels',
+        brand: 'Living Proof',
+        name: 'Scalp Care Exfoliator',
+        price: 36,
+        retailer: 'Sephora FR',
+        volume: '100 ml',
+        actives: 'Mandelic Acid, Glycolic Acid, Gluconolactone (AHA + PHA)',
+        whyChosen: 'Zero-grit liquid chemical exfoliator that sweeps away dry flakes and sebum without physical friction.'
+      },
+      {
+        id: 67,
+        category: 'Scalp Treatments',
+        subCategory: 'Exfoliants & Peels',
+        brand: 'Moroccanoil',
+        name: 'Purifying Pre-Wash Scalp Scrub',
+        price: 38.5,
+        retailer: 'Sephora FR',
+        volume: '125 ml',
+        actives: 'Argan Shell Powder, Jojoba Beads, AHA/BHA/PHA Blend',
+        whyChosen: 'Dual physical-and-acid pre-wash scrub that deeply decongests buildup and revitalizes dull roots.'
+      },
+      {
+        id: 68,
+        category: 'Scalp Treatments',
+        subCategory: 'Exfoliants & Peels',
+        brand: 'Briogeo',
+        name: 'Scalp Revival Charcoal + Coconut Oil Micro-Exfoliating Shampoo',
+        price: 52,
+        retailer: 'Sephora FR',
+        volume: '226 ml',
+        actives: 'Binchotan Charcoal, Micro-Exfoliating Cellulose/Vegetable Beads, Panthenol, Bisabolol',
+        whyChosen: 'Detoxifying mechanical scrub-shampoo that draws out impurities and calms dry, itchy scalps.'
+      },
+
+      // =======================================================================
+      // SCALP TREATMENTS — GROWTH & ANTI-HAIR LOSS
+      // =======================================================================
+      {
+        id: 69,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'The Ordinary',
+        name: 'Multi-Peptide Serum for Hair Density',
+        price: 28,
+        retailer: 'Sephora FR',
+        volume: '60 ml',
+        actives: 'Redensyl™, Procapil™, Capixyl™, Baicapil™, AnaGain™, Caffeine, Biotinoyl Tripeptide-1',
+        whyChosen: 'High-value, ultra-concentrated multi-peptide formula that targets follicle density and thicker-looking hair.'
+      },
+      {
+        id: 70,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'CUTRIN',
+        name: 'BIO+ Energy Boost Scalp Serum',
+        price: 28,
+        retailer: 'Authorized FR Retail',
+        volume: '100 ml',
+        actives: 'Redensyl®, Procapil™, Biotinoyl Tripeptide-1, Apigenin, Oleanolic Acid, Green Tea, Zinc',
+        whyChosen: 'Nordic scalp treatment engineered to energize weakened roots and support healthy hair growth cycles.'
+      },
+      {
+        id: 71,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'Mediceuticals',
+        name: 'Cellagen Follicle Revitalizer',
+        price: 39,
+        retailer: 'Authorized FR Retail',
+        volume: '125 ml',
+        actives: 'Copper Peptides, Biotinoyl Tripeptide-1, Oleanolic Acid, Saw Palmetto, Red Clover, Ginseng',
+        whyChosen: 'Trichological leave-in spray formulated for women to stimulate scalp microcirculation and inhibit DHT-related thinning.'
+      },
+      {
+        id: 72,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'Mediceuticals',
+        name: 'Numinox Follicle Revitalizer',
+        price: 39,
+        retailer: 'Authorized FR Retail',
+        volume: '125 ml',
+        actives: 'Copper Tripeptide-1, Biotinoyl Tripeptide-1, Apigenin, Oleanolic Acid, Zinc, Panthenol',
+        whyChosen: 'Intensive follicle-stimulating tonic designed to anchor hair roots and improve scalp oxygenation.'
+      },
+      {
+        id: 73,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'DSD de Luxe',
+        name: '3.4.4 Capixyl + Placenta Shock De Luxe Lotion',
+        price: 48,
+        retailer: 'Authorized FR Retail',
+        volume: '100 ml',
+        actives: 'Capixyl™, Saw Palmetto, Placental Proteins, Vasodilating Botanical Complex',
+        whyChosen: 'Clinical-grade Spanish trichology lotion combining biomimetic peptides and DHT blockers to combat severe shedding.'
+      },
+      {
+        id: 74,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'Dermedic',
+        name: 'Capilarte Hair Growth & Strengthening Serum',
+        price: 18,
+        retailer: 'Pharmacie FR',
+        volume: '150 ml',
+        actives: 'Procapil™ (Apigenin, Oleanolic Acid, Biotinoyl Tripeptide-1), Caffeine, Panthenol, Birch Sap',
+        whyChosen: 'Accessible pharmacy growth serum that stimulates microcirculation and strengthens hair follicles against shedding.'
+      },
+      {
+        id: 75,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'Kérastase',
+        name: 'Genesis Sérum Anti-Chute Fortifiant',
+        price: 59,
+        retailer: 'Sephora FR',
+        volume: '90 ml',
+        actives: 'Aminexil 1.5%, Caffeine, Arginine, Niacinamide, Ginger Root, Resveratrol',
+        whyChosen: 'Daily fortifying serum that prevents collagen stiffening around the follicle and anchors roots against breakage-related hair fall.'
+      },
+      {
+        id: 76,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: "L'Oréal Professionnel",
+        name: 'Aminexil Advanced Anti-Hair Loss Programme',
+        price: 42,
+        retailer: 'Salon FR',
+        volume: '10 × 6 ml',
+        actives: 'Aminexil 1.5%, Omega-6 Nutri Complex, Niacinamide, Vitamin B6',
+        whyChosen: 'Targeted salon ampoule treatment that reinforces root anchoring and reduces seasonal or stress-induced shedding.'
+      },
+      {
+        id: 77,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'Aromatica',
+        name: 'Rosemary Root Enhancer',
+        price: 20,
+        retailer: 'K-Beauty FR',
+        volume: '100 ml',
+        actives: 'Rosemary Leaf Oil & Extract, Caffeine, Ginger, Panthenol, Biotin, Black Food Complex',
+        whyChosen: 'Lightweight herbal scalp tonic that refreshes congested roots, boosts circulation, and strengthens follicles.'
+      },
+      {
+        id: 78,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'Vichy',
+        name: 'Dercos Aminexil Clinical R.E.G.E.N. Booster',
+        price: 40,
+        retailer: 'Pharmacie FR',
+        volume: '90 ml',
+        actives: 'Aminexil 1.5%, Niacinamide 2%, Ginger Extract, Piroctone Olamine',
+        whyChosen: 'Dermatological pharmacy treatment that strengthens hair anchoring and promotes thicker, denser regrowth.'
+      },
+      {
+        id: 79,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'INNOAESTHETICS',
+        name: 'Hair Lotion',
+        price: 45,
+        retailer: 'Aesthetic FR',
+        volume: '70 ml',
+        actives: 'Acetyl Tetrapeptide-3, Red Clover, Saw Palmetto, Niacinamide, Biotin, Curcuma Complex',
+        whyChosen: 'Clinical peptide-and-botanical lotion that revitalizes dormant follicles and slows androgenetic thinning.'
+      },
+      {
+        id: 80,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'ISDIN',
+        name: 'Lambdapil Melatonin Hair Density Lotion',
+        price: 45,
+        retailer: 'Pharmacie FR',
+        volume: '100 ml',
+        actives: 'Melatonin, Diaminopyrimidine Oxide, Adenosine, Apigenin, Oleanolic Acid, Biotinoyl Tripeptide-1',
+        whyChosen: 'Antioxidant-rich overnight scalp lotion that protects follicles from oxidative stress and stimulates the anagen growth phase.'
+      },
+      {
+        id: 81,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'Sesderma',
+        name: 'Seskavel Growth Anti-Hair Loss Lotion',
+        price: 26,
+        retailer: 'Pharmacie FR',
+        volume: '200 ml',
+        actives: 'Caffeine, EGCG (Green Tea), Growth Factor Peptides, Lactoferrin, Melatonin',
+        whyChosen: 'Liposomal Spanish dermocosmetic lotion designed to prolong the hair growth phase and reduce diffuse hair loss.'
+      },
+      {
+        id: 82,
+        category: 'Scalp Treatments',
+        subCategory: 'Growth & Anti-Hair Loss',
+        brand: 'Dr.FORHAIR',
+        name: 'Folligen Original Tonic',
+        price: 22,
+        retailer: 'K-Beauty FR',
+        volume: '120 ml',
+        actives: 'Adenosine, Saw Palmetto, Ginseng, Rosemary, Panthenol, Biotin',
+        whyChosen: 'Cooling, non-greasy scalp tonic that strengthens weakened roots and balances excess scalp oil.'
+      },
+
+      // =======================================================================
+      // NIGHT CREAMS
+      // =======================================================================
+      {
+        id: 83,
+        category: 'Night Creams',
+        subCategory: null,
+        brand: 'Amika',
+        name: 'Midnight Mender Overnight Strength Repair Treatment',
+        price: 52,
+        retailer: 'Sephora FR',
+        volume: '100 ml',
+        actives: 'Bond-Fortifying Technology, Biofunctional Peptides, Amino Acids, Quinoa Protein',
+        whyChosen: 'Pillow-proof overnight bond-repair cream that leaves damaged, high-porosity lengths up to 9x stronger by morning.'
+      },
+      {
+        id: 84,
+        category: 'Night Creams',
+        subCategory: null,
+        brand: 'Aveda',
+        name: 'Botanical Repair Strengthening Overnight Serum',
+        price: 53,
+        retailer: 'Sephora FR',
+        volume: '100 ml',
+        actives: 'Plant-Derived Bond-Building Molecule, Nangai Oil',
+        whyChosen: 'Silicone-free overnight lipid-and-bond serum that repairs split ends and builds strength while you sleep.'
+      },
+      {
+        id: 85,
+        category: 'Night Creams',
+        subCategory: null,
+        brand: 'Oribe',
+        name: 'Gold Lust Restorative Night Crème for Hair',
+        price: 80,
+        retailer: 'Authorized FR Retail',
+        volume: '150 ml',
+        actives: 'Bio-Restorative Complex (Plant Collagen, Caffeine, Biotin, Niacinamide), Biomimetic Ceramides',
+        whyChosen: 'Ultra-luxurious overnight cream that deeply nourishes and restores dry, damaged lengths without staining pillows.'
+      },
+      {
+        id: 86,
+        category: 'Night Creams',
+        subCategory: null,
+        brand: 'Moroccanoil',
+        name: 'Overnight Leave-In Mask',
+        price: 45,
+        retailer: 'Authorized FR Retail',
+        volume: '120 ml',
+        actives: 'Argan Oil, Multi-Molecular Hyaluronic Acid, Vegan Snail Mucin Alternative',
+        whyChosen: 'Weightless overnight hydrator that boosts hair moisture 4x while sleeping and prevents morning tangles.'
+      },
+      {
+        id: 87,
+        category: 'Night Creams',
+        subCategory: null,
+        brand: 'Kérastase',
+        name: 'Nutritive 8H Magic Night Serum',
+        price: 57,
+        retailer: 'Sephora FR',
+        volume: '90 ml',
+        actives: 'Iris Root Extract, Plant-Based Proteins, Niacinamide, 5-Vitamin Blend',
+        whyChosen: 'Iconic overnight beauty serum that absorbs over 8 hours to transform dry, dull hair into soft, manageable silk.'
+      },
+      {
+        id: 88,
+        category: 'Night Creams',
+        subCategory: null,
+        brand: 'Amika',
+        name: 'Dream Routine Overnight Hydrating Hair Mask',
+        price: 34,
+        retailer: 'Sephora FR',
+        volume: '100 ml',
+        actives: 'Hyaluronic Acid, Bio-Fermented Coconut Water, Algae Extract, Sea Buckthorn',
+        whyChosen: 'Silicone-free overnight moisture surge that keeps dry, dehydrated strands hydrated for up to 72 hours.'
+      },
+      {
+        id: 89,
+        category: 'Night Creams',
+        subCategory: null,
+        brand: 'Joico',
+        name: 'Defy Damage Sleepover Overnight Nourishing Treatment',
+        price: 29,
+        retailer: 'Authorized FR Retail',
+        volume: '100 ml',
+        actives: 'SmartRelease™ Liposome (Keratin, Arginine, Rosehip Oil), Moringa Seed Oil',
+        whyChosen: 'Strengthens bonds, softens strands, and protects hair from overnight pillow friction and split ends.'
+      },
+      {
+        id: 90,
+        category: 'Night Creams',
+        subCategory: null,
+        brand: "L'Oréal Paris",
+        name: 'Elseve Extraordinary Oil Midnight Serum',
+        price: 12.5,
+        retailer: 'Pharmacie / Grande Surface FR',
+        volume: '100 ml',
+        actives: 'Camellia Oil, Lipid-Silicone Protective Complex',
+        whyChosen: 'Budget-friendly drugstore gem that deeply nourishes dry hair overnight and reduces pillow friction without residue.'
+      },
+
+      // =======================================================================
+      // ABBEY YUNG METHOD — FRENCH MARKET ADDITIONS (OILS, SHAMPOOS, BONDS,
+      // CONDITIONERS, MASKS & GLOSSES, LEAVE-INS)
+      // =======================================================================
+
+      // OILS — BEFORE WASH OIL
+      {
+        id: 91,
+        category: 'Oils',
+        subCategory: 'Before Wash Oil',
+        brand: 'OGX',
+        name: 'Coconut Miracle Oil Penetrating Oil',
+        price: 8,
+        retailer: 'Monoprix / Grande Surface FR',
+        volume: '100 ml',
+        actives: 'Extra-Strength Coconut Oil, Tiare Essence, Vanilla Bean Extract',
+        whyChosen: 'Thickest pre-wash penetrating oil in the Abbey Yung routine; deeply coats porous strands before shampooing to prevent hygral fatigue and breakage.'
+      },
+      {
+        id: 92,
+        category: 'Oils',
+        subCategory: 'Before Wash Oil',
+        brand: 'OGX',
+        name: 'Nourishing + Coconut Milk Anti-Breakage Serum',
+        price: 9,
+        retailer: 'Monoprix / Grande Surface FR',
+        volume: '118 ml',
+        actives: 'Coconut Milk, Whipped Egg White Proteins, Coconut Oil',
+        whyChosen: 'Medium-weight pre-shampoo oil treatment that softens and strengthens brittle lengths without weighing down normal-to-thick hair.'
+      },
+      {
+        id: 93,
+        category: 'Oils',
+        subCategory: 'Before Wash Oil',
+        brand: 'OGX',
+        name: 'Weightless Hydration + Coconut Oil Mist',
+        price: 9,
+        retailer: 'Monoprix / Grande Surface FR',
+        volume: '118 ml',
+        actives: 'Lightweight Coconut Oil, Bamboo Extract',
+        whyChosen: 'Lightest pre-wash oil mist ideal for fine or easily weighed-down hair needing pre-shampoo slip and moisture protection.'
+      },
+
+      // SHAMPOOS — CLARIFYING (ABBEY YUNG METHOD)
+      {
+        id: 94,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: "L'Oréal Professionnel",
+        name: 'Serie Expert Metal Detox Shampoo',
+        price: 26,
+        retailer: 'Sephora FR / Salon FR',
+        volume: '300 ml',
+        actives: 'Glicoamine, Mild Sulfonate Surfactants',
+        whyChosen: 'Neutralizes copper and hard-water metal deposits inside the hair fiber; ideal clarifying wash for normal-to-dry scalps.'
+      },
+      {
+        id: 95,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: 'Living Proof',
+        name: 'Clarifying Detox Shampoo',
+        price: 26,
+        retailer: 'Sephora FR',
+        volume: '236 ml',
+        actives: 'Activated Charcoal, Witch Hazel, Chelating Complex',
+        whyChosen: 'Removes stubborn product buildup, sebum, and hard-water minerals without stripping normal-to-dry scalps.'
+      },
+      {
+        id: 96,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: 'Garnier Fructis',
+        name: 'Pure Clean Purifying Shampoo',
+        price: 4,
+        retailer: 'Monoprix / Grande Surface FR',
+        volume: '250 ml',
+        actives: 'Aloe Vera Extract, Vitamins B3 & B6, Silicone-Free Surfactants',
+        whyChosen: 'Lightweight, budget-friendly clarifying wash for normal-to-dry scalps needing a fresh reset without heavy silicones.'
+      },
+      {
+        id: 97,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: 'K18',
+        name: 'PEPTIDE PREP™ Detox Shampoo',
+        price: 33,
+        retailer: 'Sephora FR',
+        volume: '250 ml',
+        actives: 'Activated Charcoal, Salicylic Acid, K18PEPTIDE™',
+        whyChosen: 'Color-safe, pH-optimized clarifying shampoo for normal-to-oily scalps that clears 99% of product buildup and excess sebum.'
+      },
+      {
+        id: 98,
+        category: 'Shampoos',
+        subCategory: 'Clarifying',
+        brand: 'Pantene Pro-V',
+        name: 'Volume & Purify / Sheer Volume Shampoo',
+        price: 5,
+        retailer: 'Monoprix / Grande Surface FR',
+        volume: '300 ml',
+        actives: 'Pro-V Nutrient Blend, Antioxidants, Deep-Cleansing Surfactants',
+        whyChosen: 'Powerful drugstore clarifying option for normal-to-dry scalps seeking maximum root lift and squeaky-clean scalp clarity.'
+      },
+
+      // SHAMPOOS — NORMAL (ABBEY YUNG METHOD)
+      {
+        id: 99,
+        category: 'Shampoos',
+        subCategory: 'Normal',
+        brand: 'Redken',
+        name: 'Acidic Bonding Concentrate Shampoo',
+        price: 27,
+        retailer: 'Sephora FR',
+        volume: '300 ml',
+        actives: 'Citric Acid, Bonding Care Complex',
+        whyChosen: 'High-end sulfate-free bond-reinforcing daily shampoo tailored for normal-to-dry scalps and color-treated lengths.'
+      },
+      {
+        id: 100,
+        category: 'Shampoos',
+        subCategory: 'Normal',
+        brand: 'Pureology',
+        name: 'Strength Cure Shampoo',
+        price: 25,
+        retailer: 'Authorized FR Retail',
+        volume: '266 ml',
+        actives: 'Keravis Vegetable Protein, Astaxanthin, Antifade Complex®',
+        whyChosen: 'Vegan, sulfate-free strengthening shampoo for normal-to-dry scalps that repairs micro-scarred, damaged hair while locking in color.'
+      },
+
+      // BOND TREATMENTS — AFTER SHAMPOO (ABBEY YUNG METHOD)
+      {
+        id: 101,
+        category: 'Bond Treatments',
+        subCategory: 'After Shampoo',
+        brand: 'OGX',
+        name: 'Bond Protein Repair Pre-Shampoo / Rinse-Out Treatment',
+        price: 11,
+        retailer: 'Monoprix / Grande Surface FR',
+        volume: '150 ml',
+        actives: 'Bond Protein Complex, Hydrolyzed Wheat Protein, Arginine',
+        whyChosen: 'Accessible bond-building treatment used post-shampoo for 5–10 minutes every 1–2 weeks to reinforce damaged protein bonds.'
+      },
+
+      // CONDITIONERS (ABBEY YUNG METHOD)
+      {
+        id: 102,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'Redken',
+        name: 'Acidic Bonding Concentrate Conditioner',
+        price: 29,
+        retailer: 'Sephora FR',
+        volume: '300 ml',
+        actives: 'Citric Acid, Concentrated Bonding Care Complex',
+        whyChosen: 'Rich, creamy bond-repair conditioner that seals cuticles, tames frizz, and restores strength to bleached or heat-stressed hair.'
+      },
+      {
+        id: 103,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'Amika',
+        name: 'The Kure Strength Repair Conditioner',
+        price: 30,
+        retailer: 'Sephora FR',
+        volume: '275 ml',
+        actives: 'Bond Cure Technology, Mango Butter, Borage Oil, Vegan Proteins',
+        whyChosen: 'Thick, creamy daily conditioner clinically shown to strengthen damaged hair and prevent split ends.'
+      },
+      {
+        id: 104,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'Pureology',
+        name: 'Strength Cure Conditioner',
+        price: 28,
+        retailer: 'Authorized FR Retail',
+        volume: '266 ml',
+        actives: 'Keravis Protein, Astaxanthin, Olive & Shea Emollients',
+        whyChosen: 'Medium-weight vegan conditioner that detangles, fortifies brittle strands, and preserves salon hair color.'
+      },
+      {
+        id: 105,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'Pantene',
+        name: 'Miracle Rescue Deep Repair Conditioner',
+        price: 8,
+        retailer: 'Monoprix / Grande Surface FR',
+        volume: '236 ml',
+        actives: 'Pro-V Melting Pearls, Histidine, Panthenol',
+        whyChosen: 'Lightweight everyday conditioner that delivers targeted lipid and Pro-V moisture without flattening fine hair.'
+      },
+      {
+        id: 106,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: "L'Oréal Paris",
+        name: 'Elsève Bond Repair Conditioner',
+        price: 7,
+        retailer: 'Pharmacie / Monoprix FR',
+        volume: '200 ml',
+        actives: 'Citric Acid Bond Repair Complex',
+        whyChosen: 'Thick, creamy drugstore conditioner that reinforces broken inner hair bonds and leaves lengths silky and resilient.'
+      },
+
+      // MASKS — PROTEIN-AIMED & LIPIDS / GLOSSES (ABBEY YUNG METHOD)
+      {
+        id: 107,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: "L'Oréal Paris",
+        name: 'Elsève Dream Long 8 Second Wonder Water',
+        price: 11,
+        retailer: 'Pharmacie / Monoprix FR',
+        volume: '200 ml',
+        actives: 'Lamellar Moisturizing Agents, Amino Acids, Fatty Alcohols',
+        whyChosen: 'Weightless liquid lamellar gloss that transforms dull, tangled lengths into glass-like shine in just 8 seconds.'
+      },
+      {
+        id: 108,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Amika',
+        name: 'Flash Instant Shine Mask',
+        price: 34,
+        retailer: 'Sephora FR',
+        volume: '200 ml',
+        actives: 'Amino Acids, Flaxseed Extract, UV Filters',
+        whyChosen: 'Fast-acting liquid glossing mask that seals the cuticle for mirror-like shine and silky softness without heaviness.'
+      },
+      {
+        id: 109,
+        category: 'Masks',
+        subCategory: 'Protein-Aimed',
+        brand: 'Elizavecca',
+        name: 'CER-100 Collagen Ceramide Coating Protein Treatment',
+        price: 10,
+        retailer: 'K-Beauty FR / Authorized Retail',
+        volume: '100 ml',
+        actives: 'Hydrolyzed Collagen, Ceramide NP, Soy & Wheat Proteins',
+        whyChosen: 'Ultra-lightweight K-beauty protein mask that rapidly restores bounce and smoothness to porous, over-processed hair.'
+      },
+      {
+        id: 110,
+        category: 'Masks',
+        subCategory: 'Lipids',
+        brand: 'Pantene',
+        name: 'Miracle Rescue Intensive Bond Repair Mask',
+        price: 10,
+        retailer: 'Monoprix / Grande Surface FR',
+        volume: '300 ml',
+        actives: 'Pro-V Melting Nutrient Pearls, Conditioning Lipids',
+        whyChosen: 'Lightweight intensive mask that melts into dry strands to replenish lost lipids and reduce breakage.'
+      },
+      {
+        id: 111,
+        category: 'Masks',
+        subCategory: 'Protein-Aimed',
+        brand: 'OGX',
+        name: 'Bond Protein Repair 1-Minute Treatment Mask',
+        price: 9,
+        retailer: 'Monoprix / Grande Surface FR',
+        volume: '220 ml',
+        actives: 'Bond Protein Complex, Hydrolyzed Keratin, Panthenol',
+        whyChosen: 'Fast 1-minute thick protein mask that rebuilds weakened hair fibers and boosts elasticity.'
+      },
+      {
+        id: 112,
+        category: 'Masks',
+        subCategory: 'Protein-Aimed',
+        brand: 'Amika',
+        name: 'The Kure Intense Strength Repair Mask',
+        price: 39,
+        retailer: 'Sephora FR',
+        volume: '250 ml',
+        actives: 'Bond Cure Technology, Shea Butter, Mango Butter, Vegan Proteins',
+        whyChosen: 'Thickest, buttery reparative mask in the curation for severely damaged, dry, or coarse hair needing deep lipid-protein restoration.'
+      },
+
+      // LEAVE-INS (ABBEY YUNG METHOD)
+      {
+        id: 113,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'TRESemmé',
+        name: 'Keratin Smooth Heat Protection Spray',
+        price: 6,
+        retailer: 'Monoprix / Grande Surface FR',
+        volume: '200 ml',
+        actives: 'Hydrolyzed Keratin, Marula Oil, Heat-Shielding Polymers',
+        whyChosen: 'Fine-mist heat protectant spray for even distribution; smooths frizz, detangles, and shields hair up to 230°C.'
+      },
+      {
+        id: 114,
+        category: 'Leave-Ins',
+        subCategory: null,
+        brand: 'OGX',
+        name: 'Bond Protein Repair 450°F Heat Protect Spray',
+        price: 10,
+        retailer: 'Monoprix / Grande Surface FR',
+        volume: '193 ml',
+        actives: 'Bond Protein Complex, Hydrolyzed Wheat Protein, Thermal Shield Actives',
+        whyChosen: 'Lightweight spray leave-in that reinforces hair bonds while protecting lengths against high-heat blow-drying and flat irons.'
+      },
+
+      // =======================================================================
+      // OILS — POST-WASH / RENEWAL OIL
+      // =======================================================================
+      {
+        id: 115,
+        category: 'Oils',
+        subCategory: 'Post-Wash / Renewal Oil',
+        brand: "L'Oréal Paris",
+        name: 'Elseve Huile Extraordinaire Universelle',
+        price: 13,
+        retailer: 'Monoprix / Grande Surface FR (~€10–15)',
+        volume: '100 ml',
+        actives: '6 Micro-Flower Oils, Lightweight Emollients, UV & Frizz Shield',
+        whyChosen: "Best affordable everyday option. Softens lengths, adds shine and helps smooth frizz after washing or on dry ends (use sparingly so it doesn't weigh hair down)."
+      },
+      {
+        id: 116,
+        category: 'Oils',
+        subCategory: 'Post-Wash / Renewal Oil',
+        brand: 'Revlon Professional',
+        name: 'Orofluido Elixir',
+        price: 18,
+        retailer: 'Salon / Authorized FR Retail (~€10–25)',
+        volume: '100 ml',
+        actives: 'Organic Argan Oil, Cyperus Oil, Linseed Oil, Smoothing Silicones',
+        whyChosen: 'Best for silky, shiny hair. Lightweight finishing elixir that leaves lengths smooth and polished, especially post-blowout.'
+      },
+      {
+        id: 117,
+        category: 'Oils',
+        subCategory: 'Post-Wash / Renewal Oil',
+        brand: 'Wella Professionals',
+        name: 'Ultimate Smooth Oil',
+        price: 24,
+        retailer: 'Salon / Authorized FR Retail (~€15–30)',
+        volume: '100 ml',
+        actives: 'Squalane, Omega-9 Fatty Acids, Anti-Frizz Smoothing Polymers',
+        whyChosen: 'Best for smoothness and frizz control on fluffy, dry-looking hair after washing; acts as a sleek finishing treatment.'
+      },
+      {
+        id: 118,
+        category: 'Oils',
+        subCategory: 'Post-Wash / Renewal Oil',
+        brand: 'Moroccanoil',
+        name: 'Moroccanoil Treatment Light',
+        price: 36,
+        retailer: 'Sephora FR (~€30–40)',
+        volume: '100 ml',
+        actives: 'Antioxidant Argan Oil, Linseed Extract, Lightweight Cyclomethicone',
+        whyChosen: 'Top mid-range pick for fine or light-colored hair. Detangles, softens, adds shine and tames frizz without the heaviness of the original oil.'
+      },
+      {
+        id: 119,
+        category: 'Oils',
+        subCategory: 'Post-Wash / Renewal Oil',
+        brand: 'OLAPLEX',
+        name: 'No.7 Bonding Oil',
+        price: 30,
+        retailer: 'Sephora FR',
+        volume: '30 ml',
+        actives: 'Bis-Aminopropyl Diglycol Dimaleate, Fermented Green Tea Oil, Moringa & Grape Seed Oils',
+        whyChosen: 'Best for heat styling and damaged lengths. Ultra-concentrated weightless oil offering shine, frizz control, and 232°C heat protection.'
+      },
+      {
+        id: 120,
+        category: 'Oils',
+        subCategory: 'Post-Wash / Renewal Oil',
+        brand: 'Amika',
+        name: 'Superfruit Star Lightweight Hair Styling Oil',
+        price: 34,
+        retailer: 'Sephora FR',
+        volume: '50 ml',
+        actives: 'Sea Buckthorn Berry, Superfruit Oils, Weightless Glossing Esters',
+        whyChosen: 'Best for lightweight glossy styling. Delivers smoothness, mirror shine and definition without any greasy residue.'
+      },
+      {
+        id: 121,
+        category: 'Oils',
+        subCategory: 'Post-Wash / Renewal Oil',
+        brand: 'Kérastase',
+        name: "Elixir Ultime L'Huile Originale",
+        price: 62,
+        retailer: 'Sephora FR (~€60–75)',
+        volume: '75 ml',
+        actives: 'Wild & French Camellia Oils, Marula Oil, Argan Oil, Maize Germ Oil',
+        whyChosen: 'Best luxury all-rounder. Lightweight, luminous finishing oil that smooths flyaways and imparts a silky salon blowout finish.'
+      },
+      {
+        id: 122,
+        category: 'Oils',
+        subCategory: 'Post-Wash / Renewal Oil',
+        brand: 'K18',
+        name: 'Molecular Repair Hair Oil',
+        price: 65,
+        retailer: 'Sephora FR',
+        volume: '30 ml',
+        actives: 'K18PEPTIDE™, Hemisqualane, Squalane, Avocado & Sunflower Oils',
+        whyChosen: 'Best luxury option for damaged hair. Biotech peptide-infused lightweight oil that repairs internal damage while taming frizz and protecting against heat.'
+      },
+      {
+        id: 123,
+        category: 'Oils',
+        subCategory: 'Post-Wash / Renewal Oil',
+        brand: 'Gisou',
+        name: 'Honey Infused Hair Oil',
+        price: 46,
+        retailer: 'Sephora FR (~€40–60)',
+        volume: '50 ml',
+        actives: 'Mirsalehi Honey, Mirsalehi Bee Garden Oil Blend, Sweet Almond & Coconut Oils',
+        whyChosen: 'Best for a luxurious, sensorial soft finish. Smooths and illuminates lengths; use a tiny drop on fine hair ends.'
+      },
+
+      // =======================================================================
+      // CONDITIONERS — FINE, VOLUME & STRENGTHENING EDIT
+      // =======================================================================
+      {
+        id: 124,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'Davines',
+        name: 'DEDE Conditioner',
+        price: 22,
+        retailer: 'Authorized FR Retail (~€15–25)',
+        volume: '250 ml',
+        actives: 'Red Celery Extract (Mineral Salts), Gentle Detangling Emollients',
+        whyChosen: 'Best for everyday gentle conditioning on fine hair. Softens and detangles without weighing down natural volume.'
+      },
+      {
+        id: 125,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'Living Proof',
+        name: 'Full Conditioner',
+        price: 29,
+        retailer: 'Sephora FR (~€20–30)',
+        volume: '236 ml',
+        actives: 'Healthy Hair Molecule (OFPMA), Amaranth Peptides, Phytantriol',
+        whyChosen: 'Best for fine, flat hair. Focuses on weightless hydration and detangling while preserving airy fullness.'
+      },
+      {
+        id: 126,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'Redken',
+        name: 'Volume Injection Conditioner',
+        price: 26,
+        retailer: 'Sephora FR (~€20–30)',
+        volume: '300 ml',
+        actives: 'Filloxane, Bodifying Polymers, Lightweight Conditioning Agents',
+        whyChosen: 'Best for volume and body. Lifts fine, limp hair with movement and softness without heavy buildup.'
+      },
+      {
+        id: 127,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'OUAI',
+        name: 'Fine Hair Conditioner',
+        price: 32,
+        retailer: 'Sephora FR',
+        volume: '300 ml',
+        actives: 'Hydrolyzed Keratin, Biotin, Chia Seed Oil, Hemp Seed Extract',
+        whyChosen: 'Best mid-range choice for soft, bouncy, healthy-looking fine hair that needs hydration and movement without heavy repair.'
+      },
+      {
+        id: 128,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'OLAPLEX',
+        name: 'No.5 Fine Bond Maintenance Volumizing Conditioner',
+        price: 34,
+        retailer: 'Sephora FR',
+        volume: '250 ml',
+        actives: 'Bis-Aminopropyl Diglycol Dimaleate, Flexible Polymers, Low-Molecular Hyaluronic Acid',
+        whyChosen: 'Best mid-range choice for fine hair that is fragile or damaged. Combines bond-strengthening repair and detangling with weightless volume.'
+      },
+      {
+        id: 129,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'Davines',
+        name: 'VOLU Conditioner',
+        price: 25,
+        retailer: 'Authorized FR Retail (~€20–30)',
+        volume: '250 ml',
+        actives: 'Caprauna Turnip Root Extract, Lightweight Volumizing Emollients',
+        whyChosen: 'Best for naturally flat hair needing root-to-tip lift and airy manageability rather than a heavy sleek finish.'
+      },
+      {
+        id: 130,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'Kérastase',
+        name: 'Genesis Fondant Renforçateur',
+        price: 40,
+        retailer: 'Sephora FR (~€35–45)',
+        volume: '200 ml',
+        actives: 'Edelweiss Native Cells, Ginger Root, Strengthening Ceramides',
+        whyChosen: 'Best for weakened lengths prone to mechanical snapping and brushing breakage; reinforces fibre strength and detangles smoothly.'
+      },
+      {
+        id: 131,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'Kérastase',
+        name: 'Densifique Fondant Densité',
+        price: 52,
+        retailer: 'Sephora FR (~€50–60)',
+        volume: '200 ml',
+        actives: 'Hyaluronic Acid, Intra-Cylane®, Gluco-Peptides',
+        whyChosen: 'Best luxury conditioner for fine or visually sparse hair lacking density; plumps the fibre for a fuller, more substantial feel.'
+      },
+      {
+        id: 132,
+        category: 'Conditioners',
+        subCategory: null,
+        brand: 'Oribe',
+        name: 'Magnificent Volume Conditioner',
+        price: 58,
+        retailer: 'Authorized FR Retail (~€55–65)',
+        volume: '200 ml',
+        actives: 'Oribe Signature Complex, Lupine Protein, Saw Palmetto & Marine Extracts',
+        whyChosen: 'Best luxury conditioner for volume-focused styling. Leaves fine hair soft, bouncy, and fuller-looking with a polished salon finish.'
+      }
+    ];
+
+    /**
+     * =========================================================================
+     * 2. CATEGORY DEFINITIONS & RITUAL GUIDANCE
+     * =========================================================================
+     */
+    const CATEGORIES = [
+      {
+        id: 'All Formulations',
+        label: 'All Formulations',
+        subtitle: 'Complete luxury archive curated for the French market. Click any card to inspect the full ritual guide.',
+        subCategories: []
+      },
+      {
+        id: 'Bond Treatments',
+        label: 'Bond Treatments',
+        subtitle: 'Disulfide, ionic, hydrogen, and peptide bond-rebuilding therapies organized by ritual step.',
+        subCategories: ['Before Washing', 'After Shampoo', 'After Washing']
+      },
+      {
+        id: 'Shampoos',
+        label: 'Shampoos',
+        subtitle: 'Targeted scalp-purifying clarifying cleansers and gentle everyday barrier-respecting formulas.',
+        subCategories: ['Clarifying', 'Normal']
+      },
+      {
+        id: 'Conditioners',
+        label: 'Conditioners',
+        subtitle: 'Rinse-out cuticle sealers and daily detangling emulsions.',
+        subCategories: []
+      },
+      {
+        id: 'Masks',
+        label: 'Masks',
+        subtitle: 'Deep conditioning treatments divided between structural protein rebuilders and lipid-rich emollients.',
+        subCategories: ['Protein-Aimed', 'Lipids']
+      },
+      {
+        id: 'Leave-Ins',
+        label: 'Leave-Ins',
+        subtitle: 'Thermal protection milks, anti-frizz glazes, and daily protective detangling elixirs.',
+        subCategories: []
+      },
+      {
+        id: 'Oils',
+        label: 'Oils',
+        subtitle: 'Penetrating pre-wash oils to prevent hygral fatigue and finishing renewal elixirs for mirror shine.',
+        subCategories: ['Before Wash Oil', 'Post-Wash / Renewal Oil']
+      },
+      {
+        id: 'Scalp Treatments',
+        label: 'Scalp Treatments',
+        subtitle: 'Chemical/mechanical scalp exfoliants and clinical follicle-stimulating density serums.',
+        subCategories: ['Exfoliants & Peels', 'Growth & Anti-Hair Loss']
+      },
+      {
+        id: 'Night Creams',
+        label: 'Night Creams',
+        subtitle: 'Overnight pillow-proof restorative serums and lipid masks that repair while you sleep.',
+        subCategories: []
+      }
+    ];
+
+    /**
+     * Generates editorial "When & How to Use" guidance for the Product Dossier Drawer
+     */
+    function getRitualGuidance(product) {
+      if (product.category === 'Bond Treatments') {
+        if (product.subCategory === 'Before Washing') {
+          return {
+            step: 'Step 01 · Pre-Wash Treatment',
+            timing: 'Apply to damp or dry hair 10–20 minutes prior to shampooing.',
+            tip: 'Comb through mid-lengths and ends evenly before rinsing and following with your gentle cleanser.'
+          };
+        }
+        if (product.subCategory === 'After Shampoo') {
+          return {
+            step: 'Step 02 · In-Shower Reconstruction',
+            timing: 'Apply after shampooing onto towel-squeezed hair for 3–10 minutes.',
+            tip: 'Emulsify gently through lengths before rinsing thoroughly with lukewarm water to seal the cuticle.'
+          };
+        }
+        return {
+          step: 'Step 03 · Leave-In Molecular Seal',
+          timing: 'Apply sparingly to clean, towel-dried hair; do not rinse out.',
+          tip: 'Wait 4 minutes for peptides/polymers to bind before layering styling products or blow-drying.'
+        };
+      }
+      if (product.category === 'Shampoos') {
+        if (product.subCategory === 'Clarifying') {
+          return {
+            step: 'Reset Cleanse · 1x Weekly or Bi-Weekly',
+            timing: 'Massage thoroughly into wet roots for 60 seconds, then rinse.',
+            tip: 'Always follow a clarifying wash with a hydrating or lipid-rich mask to replenish softness.'
+          };
+        }
+        return {
+          step: 'Daily / Frequent Ritual Cleanse',
+          timing: 'Emulsify between palms with water before massaging gently onto the scalp.',
+          tip: 'Double-cleanse if you use dry shampoo or styling oils—first wash lifts buildup, second wash treats.'
+        };
+      }
+      if (product.category === 'Masks') {
+        if (product.subCategory === 'Protein-Aimed') {
+          return {
+            step: 'Structural Strengthening Treatment',
+            timing: 'Use every 2–3 washes on damp hair for 5–10 minutes.',
+            tip: 'Balance protein masks with a moisturizing or lipid conditioner afterward if hair feels overly firm.'
+          };
+        }
+        return {
+          step: 'Lipid & Moisture Replenishment',
+          timing: 'Apply generously from mid-lengths to ends for 5–15 minutes.',
+          tip: 'Use a wide-tooth comb in the shower to distribute lipids evenly for mirror-like cuticle reflection.'
+        };
+      }
+      if (product.category === 'Leave-Ins') {
+        return {
+          step: 'Post-Wash Protection & Detangling',
+          timing: 'Mist or smooth onto damp hair prior to brushing or heat styling.',
+          tip: 'Focus on mid-lengths and ends; always apply before blow-drying to prevent thermal cuticle stress.'
+        };
+      }
+      if (product.category === 'Oils') {
+        if (product.subCategory === 'Before Wash Oil') {
+          return {
+            step: 'Pre-Wash Lipid Shield · 15–30 Min Before Shampoo',
+            timing: 'Coat dry mid-lengths and ends generously before stepping into the shower.',
+            tip: 'Prevents hygral fatigue (swelling of wet hair fibers) and reduces friction during shampooing.'
+          };
+        }
+        return {
+          step: 'Finishing & Renewal Seal',
+          timing: 'Warm 1–3 drops between palms and smooth over dry ends after styling or between washes.',
+          tip: 'Locks in hydration, tames flyaways, and imparts glass-hair shine without weighing roots down.'
+        };
+      }
+      if (product.category === 'Conditioners') {
+        return {
+          step: 'In-Shower Cuticle Seal',
+          timing: 'Apply after shampooing (or after bond masks) from mid-lengths to ends for 2–3 minutes.',
+          tip: 'Comb through gently in the shower to ensure every strand is coated before rinsing cool.'
+        };
+      }
+      if (product.category === 'Scalp Treatments') {
+        if (product.subCategory === 'Exfoliants & Peels') {
+          return {
+            step: 'Pre-Wash Scalp Reset · 1x Weekly',
+            timing: 'Apply directly along scalp partings 10–15 minutes before shampooing.',
+            tip: 'Massage gently with fingertips (never fingernails) to lift buildup without irritating follicles.'
+          };
+        }
+        return {
+          step: 'Daily Follicle Density Ritual',
+          timing: 'Apply daily to clean, dry or towel-dried scalp partings; leave in.',
+          tip: 'Consistency is essential—clinical peptide and Aminexil formulas show peak results after 8–12 weeks.'
+        };
+      }
+      if (product.category === 'Night Creams') {
+        return {
+          step: 'Overnight Restorative Beauty Sleep',
+          timing: 'Warm 1–2 pumps between palms and smooth over dry lengths before bed.',
+          tip: 'Pillow-proof formulas absorb rapidly—pair with a silk pillowcase or loose braid for frictionless mornings.'
+        };
+      }
+      return {
+        step: 'Curated Atelier Ritual',
+        timing: 'Incorporate into your weekly wash or styling routine as desired.',
+        tip: 'Start with a small amount and layer gradually according to hair density and porosity.'
+      };
+    }
+
+    /**
+     * =========================================================================
+     * 3. APPLICATION STATE & PERSISTENCE (WISHLIST IN LOCALSTORAGE)
+     * =========================================================================
+     */
+    const WISHLIST_STORAGE_KEY = 'atelier_capillaire_wishlist_v1';
+
+    function loadWishlist() {
+      try {
+        const raw = localStorage.getItem(WISHLIST_STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return new Set(Array.isArray(parsed) ? parsed : []);
+      } catch (e) {
+        return new Set();
+      }
+    }
+
+    function saveWishlist(wishlistSet) {
+      try {
+        localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify([...wishlistSet]));
+      } catch (e) {
+        // Ignore storage quota errors in restricted frames
+      }
+    }
+
+    const state = {
+      activeCategory: 'All Formulations',
+      activeSubCategory: 'All',
+      priceRange: 'all', // 'all' | 'under30' | '30to50' | 'over50'
+      sortOrder: 'default', // 'default' | 'price-asc' | 'price-desc' | 'brand-asc'
+      searchQuery: '',
+      wishlistOnly: false,
+      wishlist: loadWishlist(),
+      activeProductId: null
+    };
+
+    const dom = {
+      categoryTabs: document.getElementById('categoryTabs'),
+      subCategoryContainer: document.getElementById('subCategoryContainer'),
+      priceFilterPills: document.getElementById('priceFilterPills'),
+      sortSelect: document.getElementById('sortSelect'),
+      searchInput: document.getElementById('searchInput'),
+      clearSearchBtn: document.getElementById('clearSearchBtn'),
+      wishlistToggleBtn: document.getElementById('wishlistToggleBtn'),
+      wishlistHeaderHeart: document.getElementById('wishlistHeaderHeart'),
+      wishlistCountBadge: document.getElementById('wishlistCountBadge'),
+      wishlistViewBadge: document.getElementById('wishlistViewBadge'),
+      heroTotalCount: document.getElementById('heroTotalCount'),
+      activeCategoryTitle: document.getElementById('activeCategoryTitle'),
+      activeCategorySubtitle: document.getElementById('activeCategorySubtitle'),
+      resultsCounter: document.getElementById('resultsCounter'),
+      productsGrid: document.getElementById('productsGrid'),
+      emptyState: document.getElementById('emptyState'),
+      emptyStateTitle: document.getElementById('emptyStateTitle'),
+      emptyStateMessage: document.getElementById('emptyStateMessage'),
+      resetFiltersBtn: document.getElementById('resetFiltersBtn'),
+      footerShelfLinks: document.getElementById('footerShelfLinks'),
+      brandResetLink: document.getElementById('brandResetLink'),
+      // Drawer elements
+      detailDrawer: document.getElementById('detailDrawer'),
+      detailDrawerBackdrop: document.getElementById('detailDrawerBackdrop'),
+      detailDrawerPanel: document.getElementById('detailDrawerPanel'),
+      closeDrawerBtn: document.getElementById('closeDrawerBtn'),
+      drawerContent: document.getElementById('drawerContent'),
+      drawerFooter: document.getElementById('drawerFooter')
+    };
+
+    /**
+     * =========================================================================
+     * 4. HELPER UTILITIES
+     * =========================================================================
+     */
+    function formatEuro(price) {
+      return Number.isInteger(price) ? `€${price}` : `€${price.toFixed(2)}`;
+    }
+
+    /**
+     * Generates a direct search URL for Sephora France (or French authorized retail)
+     * so friends can view official store photos and purchase in one click.
+     */
+    function getRetailerSearchUrl(product) {
+      const query = encodeURIComponent(`${product.brand} ${product.name}`);
+      const isSephora = product.retailer && product.retailer.toLowerCase().includes('sephora');
+      if (isSephora) {
+        return `https://www.sephora.fr/recherche/?q=${query}`;
+      }
+      return `https://www.google.fr/search?q=${query}+acheter+france`;
+    }
+
+    /**
+     * =========================================================================
+     * 4B. BESPOKE LUXURY COSMETIC VESSEL GENERATOR (ZERO MANUAL IMAGES NEEDED)
+     * -------------------------------------------------------------------------
+     * Automatically matches brand color palettes and packaging silhouettes
+     * (apothecary dropper, frosted mask jar, salon bottle, fine-mist spray,
+     * sleek tube) to each product so all 114 cards look lush and editorial.
+     * =========================================================================
+     */
+    function getBrandPalette(brand) {
+      const b = (brand || '').toLowerCase();
+      if (b.includes('gisou')) {
+        return { bg1: '#FDF6EC', bg2: '#F5E4CA', body: '#F4C97A', bodyDark: '#D99B3C', cap: '#C99649', label: '#FFFDF9', text: '#3D2A14', accent: '#C99649' };
+      }
+      if (b.includes('olaplex') || b.includes('k18') || b.includes('ordinary') || b.includes('inkey') || b.includes('living proof')) {
+        return { bg1: '#F8F6F4', bg2: '#EAE4DE', body: '#FFFFFF', bodyDark: '#E6E1DC', cap: '#231F1E', label: '#FAF8F6', text: '#1E1917', accent: '#1E1917' };
+      }
+      if (b.includes('aveda') || b.includes('rated green') || b.includes('aromatica')) {
+        return { bg1: '#F1F6F3', bg2: '#DFECE5', body: '#275948', bodyDark: '#1A3E32', cap: '#2E2622', label: '#F9F6F0', text: '#1A3E32', accent: '#275948' };
+      }
+      if (b.includes('kérastase') || b.includes('kerastase') || b.includes('oribe') || b.includes('bumble')) {
+        return { bg1: '#FCF5F1', bg2: '#EFE0D6', body: '#B86F52', bodyDark: '#8B4B32', cap: '#C69C6D', label: '#FFFBF7', text: '#2B1B14', accent: '#B86F52' };
+      }
+      if (b.includes('moroccanoil') || b.includes('amika') || b.includes('mediceuticals')) {
+        return { bg1: '#F1F7F8', bg2: '#DCEBEF', body: '#378B99', bodyDark: '#236672', cap: '#D97B43', label: '#FFFFFF', text: '#163D45', accent: '#378B99' };
+      }
+      if (b.includes('ouai') || b.includes('fenty') || b.includes('briogeo') || b.includes('vegamour')) {
+        return { bg1: '#FAF2F0', bg2: '#EFE0DC', body: '#E8CFC9', bodyDark: '#CFAFA7', cap: '#4A3E3B', label: '#FFFDFC', text: '#2E2422', accent: '#A86B5D' };
+      }
+      if (b.includes('davines') || b.includes('cutrin') || b.includes('dsd')) {
+        return { bg1: '#F6F3EE', bg2: '#E7DFD3', body: '#6D5443', bodyDark: '#4B382B', cap: '#241E1B', label: '#FAF6F0', text: '#2E221B', accent: '#6D5443' };
+      }
+      if (b.includes('redken') || b.includes('loréal') || b.includes("l'oréal") || b.includes('pureology')) {
+        return { bg1: '#F7F3F5', bg2: '#EAE0E5', body: '#7C4B63', bodyDark: '#573144', cap: '#221C1F', label: '#FFFFFF', text: '#2E1B24', accent: '#7C4B63' };
+      }
+      // Default warm terracotta & champagne apothecary palette
+      return { bg1: '#FAF4EF', bg2: '#EDE1D6', body: '#D9B8A3', bodyDark: '#B88E76', cap: '#2C2320', label: '#FFFDFB', text: '#1E1917', accent: '#A86B5D' };
+    }
+
+    function getVesselType(product) {
+      const cat = product.category;
+      const name = (product.name || '').toLowerCase();
+      if (cat === 'Masks') return 'jar';
+      if (cat === 'Oils' || cat === 'Scalp Treatments') return 'dropper';
+      if (cat === 'Leave-Ins' || name.includes('spray') || name.includes('mist') || name.includes('elixir')) return 'spray';
+      if (cat === 'Conditioners' || name.includes('tube') || name.includes('cream') || name.includes('crème') || name.includes('balm')) return 'tube';
+      return 'bottle';
+    }
+
+    function renderStudioVisual(product, size = 'card') {
+      const p = getBrandPalette(product.brand);
+      const type = getVesselType(product);
+      const monogram = escapeHTML((product.brand || 'AC').replace(/[^A-Za-zÀ-ÿ0-9]/g, '').slice(0, 3).toUpperCase());
+      const shortBrand = escapeHTML((product.brand || '').slice(0, 14).toUpperCase());
+      const uid = `v_${product.id}_${size}`;
+      const heightClass = size === 'drawer' ? 'h-56' : 'h-44';
+
+      let vesselSvg = '';
+
+      if (type === 'jar') {
+        // Frosted luxury mask jar with metallic lid & cream highlight
+        vesselSvg = `
+          <svg viewBox="0 0 160 150" class="studio-vessel w-36 h-36" aria-hidden="true">
+            <defs>
+              <linearGradient id="${uid}_body" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="${p.bodyDark}" />
+                <stop offset="35%" stop-color="${p.body}" />
+                <stop offset="70%" stop-color="${p.body}" />
+                <stop offset="100%" stop-color="${p.bodyDark}" />
+              </linearGradient>
+              <linearGradient id="${uid}_cap" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2A2320" />
+                <stop offset="40%" stop-color="${p.cap}" />
+                <stop offset="100%" stop-color="#1E1917" />
+              </linearGradient>
+            </defs>
+            <!-- Soft studio reflection -->
+            <ellipse cx="80" cy="134" rx="44" ry="6" fill="rgba(30,25,23,0.12)" />
+            <!-- Jar Base -->
+            <rect x="34" y="62" width="92" height="68" rx="14" fill="url(#${uid}_body)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+            <!-- Frosted Glass Rim -->
+            <rect x="34" y="62" width="92" height="8" fill="rgba(255,255,255,0.28)" />
+            <!-- Metallic Lid -->
+            <rect x="31" y="42" width="98" height="22" rx="7" fill="url(#${uid}_cap)" />
+            <rect x="31" y="45" width="98" height="3" fill="rgba(255,255,255,0.25)" />
+            <!-- Editorial Jar Label -->
+            <rect x="44" y="75" width="72" height="44" rx="5" fill="${p.label}" stroke="rgba(30,25,23,0.08)" stroke-width="0.8"/>
+            <line x1="56" y1="84" x2="104" y2="84" stroke="${p.accent}" stroke-width="1" stroke-opacity="0.5"/>
+            <text x="80" y="99" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-weight="700" font-size="13" fill="${p.text}" letter-spacing="1.2">${monogram}</text>
+            <text x="80" y="110" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="5.5" fill="${p.accent}" letter-spacing="1.5">MASQUE</text>
+          </svg>
+        `;
+      } else if (type === 'dropper') {
+        // Apothecary glass dropper bottle with pipette bulb
+        vesselSvg = `
+          <svg viewBox="0 0 160 150" class="studio-vessel w-36 h-36" aria-hidden="true">
+            <defs>
+              <linearGradient id="${uid}_body" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="${p.bodyDark}" />
+                <stop offset="30%" stop-color="${p.body}" />
+                <stop offset="75%" stop-color="${p.body}" />
+                <stop offset="100%" stop-color="${p.bodyDark}" />
+              </linearGradient>
+            </defs>
+            <ellipse cx="80" cy="138" rx="30" ry="5" fill="rgba(30,25,23,0.12)" />
+            <!-- Rubber Pipette Bulb -->
+            <path d="M71 28 C71 17, 89 17, 89 28 L90 38 L70 38 Z" fill="#231E1C" />
+            <!-- Threaded Collar -->
+            <rect x="65" y="37" width="30" height="11" rx="2.5" fill="${p.cap}" />
+            <line x1="65" y1="41" x2="95" y2="41" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+            <!-- Glass Shoulder & Body -->
+            <path d="M67 48 L93 48 L104 62 L104 128 C104 133, 100 136, 95 136 L65 136 C60 136, 56 133, 56 128 L56 62 Z" fill="url(#${uid}_body)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+            <!-- Glass Specular Highlight -->
+            <rect x="61" y="64" width="4" height="64" rx="2" fill="rgba(255,255,255,0.35)" />
+            <!-- Apothecary Label -->
+            <rect x="61" y="72" width="38" height="52" rx="3" fill="${p.label}" stroke="rgba(30,25,23,0.08)" stroke-width="0.7"/>
+            <text x="80" y="92" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-weight="700" font-size="12" fill="${p.text}" letter-spacing="1">${monogram}</text>
+            <line x1="68" y1="98" x2="92" y2="98" stroke="${p.accent}" stroke-width="0.9" stroke-opacity="0.6"/>
+            <text x="80" y="109" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="5" fill="${p.accent}" letter-spacing="1.2">ELIXIR</text>
+          </svg>
+        `;
+      } else if (type === 'spray') {
+        // Fine-mist leave-in sprayer bottle
+        vesselSvg = `
+          <svg viewBox="0 0 160 150" class="studio-vessel w-36 h-36" aria-hidden="true">
+            <defs>
+              <linearGradient id="${uid}_body" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="${p.bodyDark}" />
+                <stop offset="35%" stop-color="${p.body}" />
+                <stop offset="100%" stop-color="${p.bodyDark}" />
+              </linearGradient>
+            </defs>
+            <ellipse cx="80" cy="138" rx="28" ry="5" fill="rgba(30,25,23,0.12)" />
+            <!-- Mist Actuator Cap -->
+            <rect x="72" y="18" width="16" height="16" rx="3" fill="#FAF7F4" stroke="#D8CCC2" stroke-width="1"/>
+            <circle cx="84" cy="24" r="1.8" fill="#1E1917" />
+            <!-- Metallic Collar -->
+            <rect x="68" y="34" width="24" height="10" rx="2" fill="${p.cap}" />
+            <!-- Slender Cylindrical Bottle -->
+            <path d="M68 44 L92 44 L99 56 L99 130 C99 134, 96 136, 92 136 L68 136 C64 136, 61 134, 61 130 L61 56 Z" fill="url(#${uid}_body)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+            <rect x="65" y="58" width="3.5" height="70" rx="1.75" fill="rgba(255,255,255,0.32)" />
+            <!-- Minimalist Label -->
+            <rect x="65" y="68" width="30" height="54" rx="2.5" fill="${p.label}" />
+            <text x="80" y="90" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-weight="700" font-size="11" fill="${p.text}" letter-spacing="0.8">${monogram}</text>
+            <text x="80" y="103" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="4.8" fill="${p.accent}" letter-spacing="1.2">MIST</text>
+          </svg>
+        `;
+      } else if (type === 'tube') {
+        // Inverted luxury salon squeeze tube
+        vesselSvg = `
+          <svg viewBox="0 0 160 150" class="studio-vessel w-36 h-36" aria-hidden="true">
+            <defs>
+              <linearGradient id="${uid}_body" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="${p.bodyDark}" />
+                <stop offset="40%" stop-color="${p.body}" />
+                <stop offset="100%" stop-color="${p.bodyDark}" />
+              </linearGradient>
+            </defs>
+            <ellipse cx="80" cy="138" rx="26" ry="5" fill="rgba(30,25,23,0.12)" />
+            <!-- Crimped Top Seal -->
+            <rect x="54" y="20" width="52" height="7" rx="1.5" fill="${p.bodyDark}" />
+            <line x1="56" y1="23.5" x2="104" y2="23.5" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+            <!-- Tapered Tube Body -->
+            <path d="M55 27 L105 27 L96 116 L64 116 Z" fill="url(#${uid}_body)" stroke="rgba(255,255,255,0.35)" stroke-width="0.8"/>
+            <!-- Flip Cap Base -->
+            <rect x="64" y="116" width="32" height="20" rx="4" fill="${p.cap}" />
+            <!-- Printed Tube Crest -->
+            <rect x="64" y="44" width="32" height="54" rx="2" fill="${p.label}" fill-opacity="0.94" />
+            <text x="80" y="68" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-weight="700" font-size="11.5" fill="${p.text}" letter-spacing="1">${monogram}</text>
+            <line x1="70" y1="74" x2="90" y2="74" stroke="${p.accent}" stroke-width="0.9"/>
+            <text x="80" y="85" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="4.8" fill="${p.accent}" letter-spacing="1.2">SOIN</text>
+          </svg>
+        `;
+      } else {
+        // Tall luxury pump / salon bottle (Shampoos, Bond Treatments, Night Serums)
+        vesselSvg = `
+          <svg viewBox="0 0 160 150" class="studio-vessel w-36 h-36" aria-hidden="true">
+            <defs>
+              <linearGradient id="${uid}_body" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="${p.bodyDark}" />
+                <stop offset="32%" stop-color="${p.body}" />
+                <stop offset="72%" stop-color="${p.body}" />
+                <stop offset="100%" stop-color="${p.bodyDark}" />
+              </linearGradient>
+            </defs>
+            <ellipse cx="80" cy="138" rx="32" ry="5" fill="rgba(30,25,23,0.12)" />
+            <!-- Pump Nozzle & Stem -->
+            <path d="M76 18 L96 18 C98 18, 99 20, 97 22 L84 24 L84 31 L76 31 Z" fill="${p.cap}" />
+            <rect x="70" y="31" width="20" height="11" rx="2" fill="#231E1C" />
+            <!-- Bottle Shoulders & Body -->
+            <path d="M68 42 L92 42 L103 55 L103 129 C103 134, 99 136, 94 136 L66 136 C61 136, 57 134, 57 129 L57 55 Z" fill="url(#${uid}_body)" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+            <rect x="62" y="57" width="4" height="71" rx="2" fill="rgba(255,255,255,0.34)" />
+            <!-- Signature Apothecary Label -->
+            <rect x="62" y="66" width="36" height="56" rx="3" fill="${p.label}" stroke="rgba(30,25,23,0.08)" stroke-width="0.7"/>
+            <text x="80" y="88" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-weight="700" font-size="12" fill="${p.text}" letter-spacing="1">${monogram}</text>
+            <line x1="68" y1="94" x2="92" y2="94" stroke="${p.accent}" stroke-width="0.9" stroke-opacity="0.65"/>
+            <text x="80" y="105" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" font-size="4.8" fill="${p.accent}" letter-spacing="1.2">PARIS</text>
+          </svg>
+        `;
+      }
+
+      return `
+        <div
+          class="relative ${heightClass} w-full rounded-xl overflow-hidden border border-taupe/70 flex items-center justify-center mb-4"
+          style="background: radial-gradient(circle at 30% 25%, ${p.bg1} 0%, ${p.bg2} 100%);"
+        >
+          <!-- Subtle Editorial Arch & Studio Plinth -->
+          <div class="absolute inset-x-8 top-3 bottom-0 rounded-t-full border border-white/60 bg-white/25 pointer-events-none"></div>
+          <div class="absolute bottom-0 inset-x-0 h-5 bg-gradient-to-t from-black/[0.04] to-transparent pointer-events-none"></div>
+
+          <!-- Top-left Brand Watermark -->
+          <span class="absolute top-2.5 left-3 text-[9px] font-bold uppercase tracking-[0.22em] text-espresso/45 pointer-events-none">
+            ${shortBrand}
+          </span>
+
+          <!-- Volume Pill on Bottom-Right -->
+          ${product.volume ? `
+            <span class="absolute bottom-2.5 right-3 text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/80 backdrop-blur-xs text-espresso/80 border border-taupe/50 pointer-events-none">
+              ${escapeHTML(product.volume)}
+            </span>
+          ` : ''}
+
+          <!-- Bespoke Luxury Vessel -->
+          <div class="relative z-10 flex items-center justify-center">
+            ${vesselSvg}
+          </div>
+        </div>
+      `;
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function getCategoryCount(categoryId) {
+      if (categoryId === 'All Formulations') return PRODUCTS.length;
+      return PRODUCTS.filter(p => p.category === categoryId).length;
+    }
+
+    function toggleWishlistItem(productId) {
+      if (state.wishlist.has(productId)) {
+        state.wishlist.delete(productId);
+      } else {
+        state.wishlist.add(productId);
+      }
+      saveWishlist(state.wishlist);
+      updateWishlistHeaderUI();
+      renderProducts();
+      if (state.activeProductId === productId) {
+        renderDrawer(productId);
+      }
+    }
+
+    function updateWishlistHeaderUI() {
+      dom.wishlistCountBadge.textContent = state.wishlist.size;
+      if (state.wishlistOnly) {
+        dom.wishlistToggleBtn.classList.add('bg-espresso', 'text-silk', 'border-espresso');
+        dom.wishlistToggleBtn.classList.remove('bg-alabaster', 'text-espresso', 'border-taupe');
+        dom.wishlistHeaderHeart.setAttribute('fill', 'currentColor');
+        dom.wishlistViewBadge.classList.remove('hidden');
+      } else {
+        dom.wishlistToggleBtn.classList.remove('bg-espresso', 'text-silk', 'border-espresso');
+        dom.wishlistToggleBtn.classList.add('bg-alabaster', 'text-espresso', 'border-taupe');
+        dom.wishlistHeaderHeart.setAttribute('fill', state.wishlist.size > 0 ? 'currentColor' : 'none');
+        dom.wishlistViewBadge.classList.add('hidden');
+      }
+    }
+
+    /**
+     * =========================================================================
+     * 5. RENDERING FUNCTIONS
+     * =========================================================================
+     */
+    function renderCategoryTabs() {
+      dom.categoryTabs.innerHTML = CATEGORIES.map(cat => {
+        const isActive = state.activeCategory === cat.id && !state.wishlistOnly;
+        const count = getCategoryCount(cat.id);
+        return `
+          <button
+            data-category="${escapeHTML(cat.id)}"
+            class="nav-tab shrink-0 pb-3.5 pt-1 text-xs sm:text-sm font-medium transition-colors inline-flex items-center gap-1.5 ${
+              isActive
+                ? 'active text-espresso font-semibold'
+                : 'text-warmgray hover:text-espresso'
+            }"
+          >
+            <span>${escapeHTML(cat.label)}</span>
+            <span class="text-[11px] px-1.5 py-0.5 rounded-full ${
+              isActive
+                ? 'bg-terracotta/15 text-terracotta font-semibold'
+                : 'bg-champagne/80 text-warmgray'
+            }">
+              ${count}
+            </span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function renderFooterLinks() {
+      dom.footerShelfLinks.innerHTML = CATEGORIES.filter(c => c.id !== 'All Formulations')
+        .map(cat => `
+          <button
+            data-footer-category="${escapeHTML(cat.id)}"
+            class="text-left hover:text-terracotta transition-colors truncate"
+          >
+            ${escapeHTML(cat.label)}
+          </button>
+        `).join('');
+    }
+
+    function renderSubCategories() {
+      const currentCatObj = CATEGORIES.find(c => c.id === state.activeCategory);
+      const subs = currentCatObj ? currentCatObj.subCategories : [];
+
+      if (!subs || subs.length === 0 || state.wishlistOnly) {
+        dom.subCategoryContainer.innerHTML = `
+          <span class="text-xs font-medium uppercase tracking-[0.16em] text-warmgray">
+            Shelf: <strong class="text-espresso font-semibold">${escapeHTML(state.wishlistOnly ? 'My Saved Wishlist' : state.activeCategory)}</strong>
+          </span>
+        `;
+        return;
+      }
+
+      const pills = ['All', ...subs];
+      dom.subCategoryContainer.innerHTML = `
+        <span class="text-[11px] font-semibold uppercase tracking-[0.16em] text-warmgray mr-1">Ritual Step:</span>
+        ${pills.map(sub => {
+          const isActive = state.activeSubCategory === sub;
+          return `
+            <button
+              data-subcategory="${escapeHTML(sub)}"
+              class="subcat-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all border ${
+                isActive
+                  ? 'bg-terracotta text-silk border-terracotta shadow-soft'
+                  : 'bg-silk text-warmgray border-taupe hover:border-terracotta/60 hover:text-espresso'
+              }"
+            >
+              ${escapeHTML(sub)}
+            </button>
+          `;
+        }).join('')}
+      `;
+    }
+
+    function updatePricePillsUI() {
+      const buttons = dom.priceFilterPills.querySelectorAll('.price-pill');
+      buttons.forEach(btn => {
+        const range = btn.dataset.pricerange;
+        const isActive = state.priceRange === range;
+        if (isActive) {
+          btn.className = 'price-pill px-3 py-1.5 rounded-full text-xs font-medium border transition-all bg-espresso text-silk border-espresso';
+        } else {
+          btn.className = 'price-pill px-3 py-1.5 rounded-full text-xs font-medium border transition-all bg-silk text-warmgray border-taupe hover:border-terracotta/60 hover:text-espresso';
+        }
+      });
+    }
+
+    function getFilteredAndSortedProducts() {
+      const q = state.searchQuery.trim().toLowerCase();
+
+      let filtered = PRODUCTS.filter(item => {
+        // 1. Wishlist mode
+        if (state.wishlistOnly && !state.wishlist.has(item.id)) {
+          return false;
+        }
+
+        // 2. Category filter (unless viewing global wishlist)
+        if (!state.wishlistOnly && state.activeCategory !== 'All Formulations' && item.category !== state.activeCategory) {
+          return false;
+        }
+
+        // 3. Sub-category filter
+        if (!state.wishlistOnly && state.activeSubCategory !== 'All' && item.subCategory !== state.activeSubCategory) {
+          return false;
+        }
+
+        // 4. Price range filter
+        if (state.priceRange === 'under30' && item.price >= 30) return false;
+        if (state.priceRange === '30to50' && (item.price < 30 || item.price > 50)) return false;
+        if (state.priceRange === 'over50' && item.price <= 50) return false;
+
+        // 5. Search query filter
+        if (q) {
+          const haystack = `${item.brand} ${item.name} ${item.actives} ${item.whyChosen} ${item.category} ${item.subCategory || ''} ${item.retailer || ''}`.toLowerCase();
+          return haystack.includes(q);
+        }
+
+        return true;
+      });
+
+      // 6. Sorting
+      if (state.sortOrder === 'price-asc') {
+        filtered = [...filtered].sort((a, b) => a.price - b.price);
+      } else if (state.sortOrder === 'price-desc') {
+        filtered = [...filtered].sort((a, b) => b.price - a.price);
+      } else if (state.sortOrder === 'brand-asc') {
+        filtered = [...filtered].sort((a, b) => a.brand.localeCompare(b.brand));
+      }
+
+      return filtered;
+    }
+
+    function renderProducts() {
+      dom.heroTotalCount.textContent = `${PRODUCTS.length} Formulations`;
+
+      if (state.wishlistOnly) {
+        dom.activeCategoryTitle.textContent = 'My Personal Wishlist';
+        dom.activeCategorySubtitle.textContent = 'Your saved favorite formulations from L’Atelier Capillaire, stored privately on this device.';
+      } else {
+        const currentCatObj = CATEGORIES.find(c => c.id === state.activeCategory);
+        dom.activeCategoryTitle.textContent = currentCatObj ? currentCatObj.label : state.activeCategory;
+        dom.activeCategorySubtitle.textContent = currentCatObj ? currentCatObj.subtitle : '';
+      }
+
+      const items = getFilteredAndSortedProducts();
+      dom.resultsCounter.textContent = `Showing ${items.length} ${items.length === 1 ? 'formulation' : 'formulations'}`;
+
+      if (items.length === 0) {
+        dom.productsGrid.innerHTML = '';
+        dom.productsGrid.classList.add('hidden');
+        dom.emptyState.classList.remove('hidden');
+
+        if (state.wishlistOnly && state.wishlist.size === 0) {
+          dom.emptyStateTitle.textContent = 'Your wishlist is waiting';
+          dom.emptyStateMessage.textContent = 'Tap the heart icon on any formulation card to curate your personal French beauty wishlist.';
+          dom.resetFiltersBtn.classList.remove('hidden');
+        } else if (!state.wishlistOnly && getCategoryCount(state.activeCategory) === 0 && !state.searchQuery.trim() && state.priceRange === 'all') {
+          dom.emptyStateTitle.textContent = 'Curated formulations coming soon';
+          dom.emptyStateMessage.innerHTML = `Our <strong class="text-espresso">${escapeHTML(state.activeCategory)}</strong> shelf is ready for your upcoming favorites. Add items anytime inside the <code class="text-xs bg-champagne px-1.5 py-0.5 rounded text-espresso">PRODUCTS</code> array in <code class="text-xs bg-champagne px-1.5 py-0.5 rounded text-espresso">index.html</code>.`;
+          dom.resetFiltersBtn.classList.add('hidden');
+        } else {
+          dom.emptyStateTitle.textContent = 'No matching formulations';
+          dom.emptyStateMessage.textContent = 'Try adjusting your price range, ritual filter, or search term.';
+          dom.resetFiltersBtn.classList.remove('hidden');
+        }
+        return;
+      }
+
+      dom.emptyState.classList.add('hidden');
+      dom.productsGrid.classList.remove('hidden');
+
+      dom.productsGrid.innerHTML = items.map(product => {
+        const isSaved = state.wishlist.has(product.id);
+        const shopUrl = getRetailerSearchUrl(product);
+        const isSephora = product.retailer && product.retailer.toLowerCase().includes('sephora');
+        return `
+          <article
+            data-product-id="${product.id}"
+            class="beauty-card cursor-pointer bg-silk border border-taupe rounded-2xl p-5 sm:p-6 shadow-soft flex flex-col justify-between group"
+          >
+            <div>
+              <!-- Top Row: Brand Micro-Type + Category Pills + Wishlist Heart -->
+              <div class="flex items-start justify-between gap-2 mb-3">
+                <div class="space-y-1.5">
+                  <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-terracotta">
+                    ${escapeHTML(product.brand)}
+                  </p>
+                  <div class="flex flex-wrap items-center gap-1.5">
+                    <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-alabaster border border-taupe text-warmgray">
+                      ${escapeHTML(product.category)}
+                    </span>
+                    ${product.subCategory ? `
+                      <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-champagne text-espresso">
+                        ${escapeHTML(product.subCategory)}
+                      </span>
+                    ` : ''}
+                  </div>
+                </div>
+
+                <!-- Heart / Wishlist Button -->
+                <button
+                  type="button"
+                  data-wishlist-id="${product.id}"
+                  aria-label="${isSaved ? 'Remove from wishlist' : 'Save to wishlist'}"
+                  title="${isSaved ? 'Saved in Wishlist' : 'Add to Wishlist'}"
+                  class="wishlist-card-btn shrink-0 w-9 h-9 rounded-full border transition-all flex items-center justify-center ${
+                    isSaved
+                      ? 'bg-terracotta/10 border-terracotta/40 text-terracotta'
+                      : 'bg-alabaster border-taupe text-warmgray hover:text-terracotta hover:border-terracotta/50'
+                  }"
+                >
+                  <svg class="w-4 h-4" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Bespoke Luxury Studio Visual -->
+              ${renderStudioVisual(product, 'card')}
+
+              <!-- Product Title in Editorial Serif -->
+              <h3 class="font-serif text-[22px] sm:text-2xl font-semibold text-espresso leading-snug group-hover:text-terracotta transition-colors mb-3">
+                ${escapeHTML(product.name)}
+              </h3>
+
+              <!-- French Price Badge & Retailer Hint -->
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-champagne/80 border border-taupe/70 mb-4">
+                <span class="text-sm font-semibold text-espresso">
+                  ${formatEuro(product.price)}
+                </span>
+                <span class="text-taupe">•</span>
+                <span class="text-xs font-medium text-warmgray">
+                  ${escapeHTML(product.retailer)}
+                </span>
+              </div>
+
+              <!-- Key Actives Frosted Champagne Pill Box -->
+              <div class="mb-4 p-3.5 rounded-xl bg-champagne/55 border border-taupe/80">
+                <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-terracotta mb-1">
+                  Key Actives
+                </p>
+                <p class="text-xs sm:text-[13px] font-medium text-espresso leading-relaxed">
+                  ${escapeHTML(product.actives)}
+                </p>
+              </div>
+
+              <!-- Why We Chose It -->
+              <div class="mb-4">
+                <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-warmgray mb-1">
+                  Why We Chose It
+                </p>
+                <p class="text-xs sm:text-sm text-warmgray leading-relaxed">
+                  ${escapeHTML(product.whyChosen)}
+                </p>
+              </div>
+            </div>
+
+            <!-- Card Footer Actions: Dossier + Direct Sephora/Retailer Link -->
+            <div class="pt-3.5 border-t border-taupe/60 flex items-center justify-between gap-2 text-xs font-medium">
+              <span class="text-warmgray group-hover:text-espresso transition-colors inline-flex items-center gap-1">
+                <span>View Dossier</span>
+                <span class="text-terracotta transition-transform group-hover:translate-x-0.5">→</span>
+              </span>
+
+              <a
+                href="${shopUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+                onclick="event.stopPropagation()"
+                class="px-3 py-1.5 rounded-full bg-alabaster hover:bg-espresso text-espresso hover:text-silk border border-taupe hover:border-espresso transition-colors inline-flex items-center gap-1 text-[11px] font-semibold"
+              >
+                <span>${isSephora ? 'See on Sephora FR' : 'Find in France'}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    /**
+     * =========================================================================
+     * 6. PRODUCT DETAIL DRAWER / MODAL LOGIC
+     * =========================================================================
+     */
+    function renderDrawer(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+
+      const isSaved = state.wishlist.has(product.id);
+      const ritual = getRitualGuidance(product);
+      const shopUrl = getRetailerSearchUrl(product);
+      const isSephora = product.retailer && product.retailer.toLowerCase().includes('sephora');
+
+      dom.drawerContent.innerHTML = `
+        <div>
+          <!-- Bespoke Studio Showcase inside Dossier -->
+          ${renderStudioVisual(product, 'drawer')}
+
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="text-xs font-bold uppercase tracking-[0.2em] text-terracotta">
+              ${escapeHTML(product.brand)}
+            </span>
+            <span class="text-taupe">•</span>
+            <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-champagne text-espresso">
+              ${escapeHTML(product.category)}
+            </span>
+            ${product.subCategory ? `
+              <span class="text-xs font-medium px-2.5 py-0.5 rounded-full bg-alabaster border border-taupe text-warmgray">
+                ${escapeHTML(product.subCategory)}
+              </span>
+            ` : ''}
+          </div>
+
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-espresso leading-tight">
+            ${escapeHTML(product.name)}
+          </h2>
+
+          <div class="mt-4 flex flex-wrap items-center gap-3">
+            <span class="px-4 py-1.5 rounded-full bg-espresso text-silk text-sm font-semibold">
+              Approx. ${formatEuro(product.price)}
+            </span>
+            <span class="text-xs font-medium text-warmgray">
+              Referenced at <strong class="text-espresso">${escapeHTML(product.retailer)}</strong>${product.volume ? ` · ${escapeHTML(product.volume)}` : ''}
+            </span>
+          </div>
+        </div>
+
+        <!-- Active Ingredients Highlight -->
+        <div class="p-5 rounded-2xl bg-champagne/70 border border-taupe">
+          <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-terracotta mb-2">
+            Active Ingredients Breakdown
+          </p>
+          <p class="text-sm font-medium text-espresso leading-relaxed">
+            ${escapeHTML(product.actives)}
+          </p>
+        </div>
+
+        <!-- Editorial Selection Note -->
+        <div class="space-y-2">
+          <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-warmgray">
+            Why We Chose It
+          </p>
+          <p class="text-sm sm:text-base text-espresso/90 leading-relaxed">
+            ${escapeHTML(product.whyChosen)}
+          </p>
+        </div>
+
+        <!-- Ritual Step Guidance -->
+        <div class="p-5 rounded-2xl bg-alabaster border border-taupe space-y-3">
+          <div class="flex items-center justify-between">
+            <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-terracotta">
+              Ritual Step Guidance
+            </p>
+            <span class="text-xs font-semibold text-espresso">
+              ${escapeHTML(ritual.step)}
+            </span>
+          </div>
+          <p class="text-sm font-medium text-espresso">
+            ${escapeHTML(ritual.timing)}
+          </p>
+          <p class="text-xs text-warmgray leading-relaxed border-t border-taupe/70 pt-2.5">
+            <strong class="text-espresso">Atelier Tip:</strong> ${escapeHTML(ritual.tip)}
+          </p>
+        </div>
+      `;
+
+      dom.drawerFooter.innerHTML = `
+        <button
+          id="drawerWishlistBtn"
+          class="flex-1 py-3 px-4 rounded-full text-xs sm:text-sm font-semibold transition-all inline-flex items-center justify-center gap-2 border ${
+            isSaved
+              ? 'bg-terracotta text-silk border-terracotta hover:bg-terracottaDark'
+              : 'bg-silk text-espresso border-taupe hover:border-espresso'
+          }"
+        >
+          <svg class="w-4 h-4" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+          </svg>
+          <span>${isSaved ? 'Saved' : 'Wishlist'}</span>
+        </button>
+
+        <a
+          href="${shopUrl}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex-1 py-3 px-4 rounded-full text-xs sm:text-sm font-semibold bg-espresso text-silk hover:bg-terracotta transition-colors inline-flex items-center justify-center gap-1.5"
+        >
+          <span>${isSephora ? 'See on Sephora FR' : 'Find in France'}</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      `;
+
+      document.getElementById('drawerWishlistBtn').addEventListener('click', () => {
+        toggleWishlistItem(product.id);
+      });
+    }
+
+    function openDrawer(productId) {
+      state.activeProductId = productId;
+      renderDrawer(productId);
+      dom.detailDrawer.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      // Trigger smooth slide-in on next animation frame
+      requestAnimationFrame(() => {
+        dom.detailDrawerBackdrop.classList.remove('opacity-0');
+        dom.detailDrawerBackdrop.classList.add('opacity-100');
+        dom.detailDrawerPanel.classList.remove('translate-x-full');
+        dom.detailDrawerPanel.classList.add('translate-x-0');
+      });
+    }
+
+    function closeDrawer() {
+      dom.detailDrawerBackdrop.classList.remove('opacity-100');
+      dom.detailDrawerBackdrop.classList.add('opacity-0');
+      dom.detailDrawerPanel.classList.remove('translate-x-0');
+      dom.detailDrawerPanel.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+
+      setTimeout(() => {
+        dom.detailDrawer.classList.add('hidden');
+        state.activeProductId = null;
+      }, 300);
+    }
+
+    function renderAll() {
+      updateWishlistHeaderUI();
+      renderCategoryTabs();
+      renderSubCategories();
+      updatePricePillsUI();
+      renderProducts();
+    }
+
+    /**
+     * =========================================================================
+     * 7. EVENT LISTENERS
+     * =========================================================================
+     */
+    // Category tabs click
+    dom.categoryTabs.addEventListener('click', (e) => {
+      const btn = e.target.closest('.nav-tab');
+      if (!btn) return;
+      state.wishlistOnly = false;
+      state.activeCategory = btn.dataset.category;
+      state.activeSubCategory = 'All';
+      renderAll();
+    });
+
+    // Footer shelf links click
+    dom.footerShelfLinks.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-footer-category]');
+      if (!btn) return;
+      state.wishlistOnly = false;
+      state.activeCategory = btn.dataset.footerCategory;
+      state.activeSubCategory = 'All';
+      renderAll();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Brand logo reset
+    dom.brandResetLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      state.wishlistOnly = false;
+      state.activeCategory = 'All Formulations';
+      state.activeSubCategory = 'All';
+      state.priceRange = 'all';
+      state.searchQuery = '';
+      dom.searchInput.value = '';
+      dom.clearSearchBtn.classList.add('hidden');
+      renderAll();
+    });
+
+    // Sub-category ritual filter pills
+    dom.subCategoryContainer.addEventListener('click', (e) => {
+      const btn = e.target.closest('.subcat-pill');
+      if (!btn) return;
+      state.activeSubCategory = btn.dataset.subcategory;
+      renderSubCategories();
+      renderProducts();
+    });
+
+    // Price range filter pills
+    dom.priceFilterPills.addEventListener('click', (e) => {
+      const btn = e.target.closest('.price-pill');
+      if (!btn) return;
+      state.priceRange = btn.dataset.pricerange;
+      updatePricePillsUI();
+      renderProducts();
+    });
+
+    // Sort select
+    dom.sortSelect.addEventListener('change', (e) => {
+      state.sortOrder = e.target.value;
+      renderProducts();
+    });
+
+    // Live search input
+    dom.searchInput.addEventListener('input', (e) => {
+      state.searchQuery = e.target.value;
+      dom.clearSearchBtn.classList.toggle('hidden', state.searchQuery.length === 0);
+      renderProducts();
+    });
+
+    // Clear search
+    dom.clearSearchBtn.addEventListener('click', () => {
+      state.searchQuery = '';
+      dom.searchInput.value = '';
+      dom.clearSearchBtn.classList.add('hidden');
+      renderProducts();
+    });
+
+    // Header Wishlist toggle
+    dom.wishlistToggleBtn.addEventListener('click', () => {
+      state.wishlistOnly = !state.wishlistOnly;
+      renderAll();
+    });
+
+    // Product grid delegation (Wishlist heart click vs. Open Detail Drawer)
+    dom.productsGrid.addEventListener('click', (e) => {
+      const heartBtn = e.target.closest('.wishlist-card-btn');
+      if (heartBtn) {
+        e.stopPropagation();
+        const id = Number(heartBtn.dataset.wishlistId);
+        toggleWishlistItem(id);
+        return;
+      }
+
+      const card = e.target.closest('.beauty-card');
+      if (card) {
+        const id = Number(card.dataset.productId);
+        openDrawer(id);
+      }
+    });
+
+    // Reset filters from empty state
+    dom.resetFiltersBtn.addEventListener('click', () => {
+      state.wishlistOnly = false;
+      state.activeSubCategory = 'All';
+      state.priceRange = 'all';
+      state.searchQuery = '';
+      dom.searchInput.value = '';
+      dom.clearSearchBtn.classList.add('hidden');
+      renderAll();
+    });
+
+    // Drawer close listeners
+    dom.closeDrawerBtn.addEventListener('click', closeDrawer);
+    dom.detailDrawerBackdrop.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !dom.detailDrawer.classList.contains('hidden')) {
+        closeDrawer();
+      }
+    });
+
+    // Initial render
+    renderFooterLinks();
+    renderAll();
+  </script>
+</body>
+</html>
